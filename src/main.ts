@@ -16,6 +16,9 @@ import globalComponent from '@/components'
 // 引入全局样式
 import '@/styles/index.scss'
 
+// 引入路由
+import router from '@/router/index'
+
 // 获取应用实例对象
 const app = createApp(App)
 
@@ -26,6 +29,9 @@ app.use(ElementPlus, {
 
 // 安装自定义插件：注册全局组件
 app.use(globalComponent)
+
+// 安装路由插件
+app.use(router)
 
 // 将应用点挂载到挂载点上
 app.mount('#app')

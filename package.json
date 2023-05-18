@@ -25,7 +25,8 @@
     "element-plus": "^2.3.4",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
