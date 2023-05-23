@@ -1,14 +1,11 @@
 <template>
-  <div>home</div>
+  <div>sku</div>
 </template>
 
-<script setup lang="ts">
-// 引入组合式API
-</script>
-
+<script setup lang="ts"></script>
 <script lang="ts">
 export default {
-  name: 'Home',
+  name: 'Sku',
 }
 </script>
 

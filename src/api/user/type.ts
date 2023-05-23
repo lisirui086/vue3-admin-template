@@ -7,7 +7,8 @@ export interface loginForm {
 }
 
 interface dataType {
-  token: string
+  token?: string
+  message?: string
 }
 // 登录接口返回数据类型
 export interface loginResponseData {
@@ -16,7 +17,7 @@ export interface loginResponseData {
 }
 
 // 用户信息
-interface userInfoType {
+export interface userInfoType {
   userId: number
   avatar: string
   username: string
@@ -28,7 +29,7 @@ interface userInfoType {
   token: string
 }
 
-interface user {
+export interface user {
   checkUser: userInfoType
 }
 

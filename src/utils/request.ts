@@ -5,6 +5,9 @@ import axios from 'axios'
 // 引入element-plus的消息提示组件
 import { ElMessage } from 'element-plus'
 
+// 引入user仓库
+import { useUserStore } from '@/store/modules/user'
+
 // 自定义配置新建一个实例
 const requset = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -12,10 +15,19 @@ const requset = axios.create({
 })
 
 // 添加并封装请求拦截器
-requset.interceptors.request.use((config) => {
-  // 在发送请求之前做些什么
-  return config
-})
+requset.interceptors.request.use(
+  (config) => {
+    // 在发送请求之前做些什么
+    let userStore = useUserStore()
+    if (userStore.token) {
+      config.headers.token = userStore.token
+    }
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  },
+)
 
 // 添加响应拦截器
 requset.interceptors.response.use(

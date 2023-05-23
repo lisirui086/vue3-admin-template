@@ -1,7 +1,6 @@
-import { UserConfigExport, ConfigEnv } from 'vite'
-import { viteMockServe } from 'vite-plugin-mock'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // 使用svg的插件
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -21,7 +20,7 @@ export default defineConfig(({ command }) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
-        enable: command === 'serve',
+        localEnabled: command === 'serve',
       }),
     ],
     server: {
@@ -35,10 +34,11 @@ export default defineConfig(({ command }) => {
       },
     },
     css: {
+      modules: false,
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
-          additionalData: "@import './src/styles/variable.scss';",
+          additionalData: `@import "./src/styles/variable.scss";`,
         },
       },
     },

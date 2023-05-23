@@ -1,14 +1,11 @@
 <template>
-  <div>home</div>
+  <div>数据大屏</div>
 </template>
 
-<script setup lang="ts">
-// 引入组合式API
-</script>
-
+<script setup lang="ts"></script>
 <script lang="ts">
 export default {
-  name: 'Home',
+  name: 'Screen',
 }
 </script>
 

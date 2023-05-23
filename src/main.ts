@@ -3,7 +3,7 @@ import App from '@/App.vue'
 
 // 引入element-plus插件与样式
 import ElementPlus from 'element-plus'
-//@ts-ignore忽略当前文件ts类型的检测否则有红色提示(打包会失败)
+//@ts-expect - error
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'element-plus/dist/index.css'
 
@@ -19,19 +19,33 @@ import '@/styles/index.scss'
 // 引入路由
 import router from '@/router/index'
 
+// 引入pinia
+import pinia from '@/store'
+
+// 注册所有图标
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 // 获取应用实例对象
 const app = createApp(App)
+
+// 安装自定义插件：注册全局组件
+app.use(globalComponent)
 
 // 安装element-plus插件
 app.use(ElementPlus, {
   locale: zhCn,
 })
 
-// 安装自定义插件：注册全局组件
-app.use(globalComponent)
+// 安装pinia
+app.use(pinia)
 
 // 安装路由插件
 app.use(router)
+
+// 导入所有图标并进行全局注册。
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 // 将应用点挂载到挂载点上
 app.mount('#app')
