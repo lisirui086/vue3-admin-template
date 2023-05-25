@@ -1,3 +1,5 @@
+// 路由鉴权 在main.ts中引入
+
 // 创建用户相关的仓库
 import { defineStore } from 'pinia'
 
@@ -19,7 +21,7 @@ export const useUserStore = defineStore('User', {
       menuRoutes: routes,
       // 存储用户信息
       avatar: '',
-      desc: '',
+      username: '',
     }
   },
   actions: {
@@ -40,16 +42,17 @@ export const useUserStore = defineStore('User', {
       let res = await reqUserInfo()
       if (res.code === 200) {
         this.avatar = res.data.checkUser.avatar
-        this.desc = res.data.checkUser.desc
+        this.username = res.data.checkUser.username
+        return 'userIfon success'
+      } else {
+        return Promise.reject(new Error('userInfo fail'))
       }
     },
     // 退出登录
     logout() {
-      this.token = ''
-      ;(this.avatar = ''),
-        (this.desc = ''),
-        // 移除loaclhost
-        localStorage.removeItem('user')
+      this.$reset()
+      // 移除loaclhost
+      localStorage.removeItem('token')
     },
   },
   getters: {},
@@ -59,6 +62,7 @@ export const useUserStore = defineStore('User', {
     strategies: [
       {
         key: 'user',
+        paths: ['token'],
         storage: localStorage,
       },
     ],

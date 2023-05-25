@@ -124,7 +124,6 @@ const login = async (formEl: FormInstance | undefined) => {
   loading.value = true
   try {
     await userStore.userLogin(loginForm)
-    userStore.userInfo()
     $router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',

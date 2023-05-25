@@ -30,6 +30,9 @@
 </template>
 
 <script setup lang="ts">
+// 组合式API
+import { onMounted } from 'vue'
+
 // 引入子组件
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
@@ -53,6 +56,11 @@ const { fold } = storeToRefs(settingStore)
 let $route = useRoute()
 
 const useUser = useUserStore()
+
+onMounted(() => {
+  useUser.userInfo()
+})
+
 </script>
 <script lang="ts">
 export default {

@@ -11,7 +11,7 @@
 
     <el-dropdown style="cursor: pointer">
       <span class="el-dropdown-link">
-        <span>{{ desc }}</span>
+        <span>{{ username }}</span>
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
@@ -44,7 +44,7 @@ let userStore = useUserStore()
 
 const { refresh } = storeToRefs(useSetting)
 
-const { avatar, desc } = storeToRefs(userStore)
+const { avatar, username } = storeToRefs(userStore)
 
 // 全屏 退出全屏
 const fullScreen = () => {
