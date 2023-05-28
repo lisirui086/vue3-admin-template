@@ -60,7 +60,6 @@ const useUser = useUserStore()
 onMounted(() => {
   useUser.userInfo()
 })
-
 </script>
 <script lang="ts">
 export default {

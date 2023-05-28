@@ -1,10 +1,10 @@
-// 路由鉴权 在main.ts中引入
+// 路由鉴权 在main.ts中引入 -- mock版本
 
 // 创建用户相关的仓库
 import { defineStore } from 'pinia'
 
 // 引入mock api接口
-import { reqLogin, reqUserInfo, reqLogout } from '@/api/user/index'
+import { reqLogin, reqUserInfo } from '@/api/user/index'
 
 // 引入路由常量
 import { routes } from '@/router/routes'
@@ -13,9 +13,8 @@ import { routes } from '@/router/routes'
 import { SET_TOKEN, REMOVE_TOKEN, GET_TOKEN } from '@/utils/token'
 
 // 引入ts类型
+import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { UserState } from './types/type'
-// 引入接口数据类型
-import type { loginFormData, loginResponseData, userInfoResponseData, logoutResponseData} from '@/api/user/type'
 
 export const useUserStore = defineStore('User', {
   state: (): UserState => {
@@ -30,43 +29,36 @@ export const useUserStore = defineStore('User', {
   },
   actions: {
     // 用户登录
-    async userLogin(data: loginFormData) {
+    async userLogin(data: loginForm) {
       const res: loginResponseData = await reqLogin(data)
-      // console.dir(res)
       // 登录请求 成功 code: 200 ==> 获取并存储token
       // 登录请求 失败 code: 201 ==> 提示登录失败信息
       if (res.code === 200) {
-        this.token = res.data
-        SET_TOKEN(res.data as string)
+        this.token = res.data.token
+        SET_TOKEN(res.data.token as string)
         return 'userLogin success'
       } else {
-        return Promise.reject(new Error(res.message))
+        return Promise.reject(new Error(res.data.message))
       }
     },
     // 获取用户信息
     async userInfo() {
-      let res: userInfoResponseData = await reqUserInfo()
+      let res = await reqUserInfo()
       if (res.code === 200) {
-        this.avatar = res.data.avatar
-        this.username = res.data.name
-        return 'userInfo success'
+        this.avatar = res.data.checkUser.avatar
+        this.username = res.data.checkUser.username
+        return 'userIfon success'
       } else {
-        return Promise.reject(new Error(res.message))
+        return Promise.reject(new Error('userInfo fail'))
       }
     },
     // 退出登录
-    async logout() {
-      let res: logoutResponseData = await reqLogout()
-      if (res.code === 200) {
-        // 移除loaclhost
-        this.token = ''
-        this.username = ''
-        this.avatar = ''
-        REMOVE_TOKEN()
-        return 'logout success'
-      } else {
-        return Promise.reject(new Error('logout fail'))
-      }
+    logout() {
+      // 移除loaclhost
+      this.token = ''
+      this.username = ''
+      this.avatar = ''
+      REMOVE_TOKEN()
     },
   },
   getters: {}

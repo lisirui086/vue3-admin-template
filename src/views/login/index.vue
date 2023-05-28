@@ -66,7 +66,7 @@ import useHours from '@/hooks/useHours.js'
 // 实例化路由
 let $router = useRouter()
 let $route = useRoute()
-let redirect: string = $route.query.redirect
+let redirect = $route.query.redirect
 
 // 实例化user仓库
 let userStore = useUserStore()
@@ -76,7 +76,7 @@ const hoursMsg = useHours()
 // 收集登录表单的账号密码
 let loginForm = reactive({
   username: 'admin',
-  password: '111111',
+  password: 'atguigu123',
 })
 
 let ruleFormRef = ref<FormInstance>()
@@ -101,14 +101,10 @@ const validatePassWord = (rule: any, value: any, callback: any) => {
 // 登录表单校验规则
 const loginRules = reactive<FormRules>({
   username: [
-    { validator: validateUserName, trigger: 'blur' },
-    /* { required: true, message: '用户名不能为空', trigger: 'blur' },
-    { required: true, message: '用户名长度在5-10字符', min: 5, max: 10, trigger: 'blur'} */
+    { validator: validateUserName, trigger: 'blur' }
   ],
   password: [
-    { validator: validatePassWord, trigger: 'blur' },
-    /* { required: true, message: '密码不能为空', trigger: 'blur' },
-    { required: true, message: '密码长度在6-10字符', min: 6, max: 10, trigger: 'blur'} */
+    { validator: validatePassWord, trigger: 'blur' }
   ],
 })
 
@@ -121,6 +117,7 @@ const login = async (formEl: FormInstance | undefined) => {
   // 通知仓库发请求
   // 请求成功 -> 首页展示数据的地方
   // 请求失败 -> 弹出登录失败信息
+  await formEl.validate()
   loading.value = true
   try {
     await userStore.userLogin(loginForm)

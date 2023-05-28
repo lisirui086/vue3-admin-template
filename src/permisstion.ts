@@ -12,28 +12,21 @@ import 'nprogress/nprogress.css'
 import pinia from './store'
 import { useUserStore } from './store/modules/user'
 
-// import piniaPersist from 'pinia-plugin-persist'
-
-// pinia.use(piniaPersist)
+// 关闭加载旋转器
+nprogress.configure({ showSpinner: false });
 
 // Message 消息提示
 import { ElMessage } from 'element-plus'
 
-/* useUserStore.persist: {
-  enabled: true,
-  strategies: [
-    {
-      key: 'user',
-      paths: ['token'],
-      storage: localStorage,
-    },
-  ],
-} */
+// 引入项目名称
+import setting from './setting'
 
 let userStore = useUserStore(pinia)
 
 // 路由全局前置守卫
 router.beforeEach(async (to, from, next) => {
+  // 拼接当前标题名称
+  document.title = `${setting.projectName}-${to.meta.title}`
   // 开启进度条
   nprogress.start()
 
@@ -52,7 +45,9 @@ router.beforeEach(async (to, from, next) => {
           await userStore.userInfo()
           next()
         } catch (error) {
-          ElMessage.error(error.messsage)
+          ElMessage.error('token失效,请重新登录')
+          await userStore.logout()
+          next({ path: '/login', query: { redirect: to.path } })
         }
       }
     }

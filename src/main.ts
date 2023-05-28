@@ -26,7 +26,7 @@ import pinia from '@/store'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // 引入路由鉴权
-// import './permisstion'
+import './permisstion'
 
 // 获取应用实例对象
 const app = createApp(App)
