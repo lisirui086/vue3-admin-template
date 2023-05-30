@@ -10,16 +10,14 @@
 // 引入组合式API
 import { watch, nextTick, ref } from 'vue'
 
-import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/store/modules/setting'
 
 let useSetting = useSettingStore()
 
-const { refresh } = storeToRefs(useSetting)
-
 let flag = ref(true)
 
-watch(refresh, () => {
+// 侦听刷新按钮值的变化
+watch(() => useSetting.refresh, () => {
   flag.value = false
   nextTick(() => {
     flag.value = true

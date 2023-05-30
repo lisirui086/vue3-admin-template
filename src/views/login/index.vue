@@ -100,12 +100,8 @@ const validatePassWord = (rule: any, value: any, callback: any) => {
 
 // 登录表单校验规则
 const loginRules = reactive<FormRules>({
-  username: [
-    { validator: validateUserName, trigger: 'blur' }
-  ],
-  password: [
-    { validator: validatePassWord, trigger: 'blur' }
-  ],
+  username: [{ validator: validateUserName, trigger: 'blur' }],
+  password: [{ validator: validatePassWord, trigger: 'blur' }],
 })
 
 // 控制登录按钮是否显示加载中效果 默认不显示

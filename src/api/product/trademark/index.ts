@@ -10,11 +10,14 @@ enum API {
   TRADEMARK_URL = '/admin/product/baseTrademark/',
   ADDTRADEMARK_URL = '/admin/product/baseTrademark/save',
   EDITTRADEMARK_URL = '/admin/product/baseTrademark/update',
-  REMOVETRADEMARK_URL = '/admin/product/baseTrademark/remove/'
+  REMOVETRADEMARK_URL = '/admin/product/baseTrademark/remove/',
 }
 
 // 获取已有品牌
-export const reqHasTrademark = (page: number, limit: number) => requset.get<any, TrademarkResponseData>(API.TRADEMARK_URL + `${page}/${limit}`)
+export const reqHasTrademark = (page: number, limit: number) =>
+  requset.get<any, TrademarkResponseData>(
+    API.TRADEMARK_URL + `${page}/${limit}`,
+  )
 // 添加品牌
 export const reqAddOrEditTrademark = (data: Trademark) => {
   // 判断data内是否携带id
@@ -29,4 +32,5 @@ export const reqAddOrEditTrademark = (data: Trademark) => {
   }
 }
 // 删除品牌
-export const reqRemoveTrademark = (id: number) => requset.delete<any, any>(API.REMOVETRADEMARK_URL+id)
+export const reqRemoveTrademark = (id: number) =>
+  requset.delete<any, any>(API.REMOVETRADEMARK_URL + id)

@@ -1,9 +1,11 @@
 // 引入需要注册全局组件的组件
-import SvgIcon from '@/components/Svgicon/index.vue'
+import SvgIcon from './Svgicon/index.vue'
+import Category from './Category/index.vue'
 
 // 全局组件的对象
 const allGloablComponent = {
   SvgIcon,
+  Category
 }
 
 // 对外暴露插件对象

@@ -3,7 +3,7 @@
 // 创建用户相关的仓库
 import { defineStore } from 'pinia'
 
-// 引入mock api接口
+// 引入api接口
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user/index'
 
 // 引入路由常量
@@ -15,7 +15,12 @@ import { SET_TOKEN, REMOVE_TOKEN, GET_TOKEN } from '@/utils/token'
 // 引入ts类型
 import type { UserState } from './types/type'
 // 引入接口数据类型
-import type { loginFormData, loginResponseData, userInfoResponseData, logoutResponseData} from '@/api/user/type'
+import type {
+  loginFormData,
+  loginResponseData,
+  userInfoResponseData,
+  logoutResponseData,
+} from '@/api/user/type'
 
 export const useUserStore = defineStore('User', {
   state: (): UserState => {
@@ -69,5 +74,5 @@ export const useUserStore = defineStore('User', {
       }
     },
   },
-  getters: {}
+  getters: {},
 })

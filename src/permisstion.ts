@@ -13,7 +13,7 @@ import pinia from './store'
 import { useUserStore } from './store/modules/user'
 
 // 关闭加载旋转器
-nprogress.configure({ showSpinner: false });
+nprogress.configure({ showSpinner: false })
 
 // Message 消息提示
 import { ElMessage } from 'element-plus'

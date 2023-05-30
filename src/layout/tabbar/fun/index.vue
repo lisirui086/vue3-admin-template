@@ -42,7 +42,7 @@ let $route = useRoute()
 let useSetting = useSettingStore()
 let userStore = useUserStore()
 
-const { refresh } = storeToRefs(useSetting)
+const { refresh } = storeToRefs(useSetting) 
 
 const { avatar, username } = storeToRefs(userStore)
 

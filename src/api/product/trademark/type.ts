@@ -5,8 +5,8 @@ import type { responseData } from '@/api/user/type'
 
 // 品牌参数类型
 export interface Trademark {
-  id?: number,
-  tmName: string,
+  id?: number
+  tmName: string
   logoUrl: string
 }
 
@@ -16,16 +16,16 @@ export type Records = Trademark[]
 // 获取已有品牌数据的参数类型
 export interface TrademarkResponseData extends responseData {
   data: {
-    records: Records,
-    total: number,
-    size: number,
-    current: number,
-    orders: any[],
-    optimizeCountSql: boolean,
-    hitCount: boolean,
-    countId: null,
-    maxLimit: null,
-    searchCount: boolean,
+    records: Records
+    total: number
+    size: number
+    current: number
+    orders: any[]
+    optimizeCountSql: boolean
+    hitCount: boolean
+    countId: null
+    maxLimit: null
+    searchCount: boolean
     pages: number
   }
 }

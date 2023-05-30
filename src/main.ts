@@ -28,6 +28,9 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // 引入路由鉴权
 import './permisstion'
 
+// 引入自定义指令
+import directives from '@/directives/index'
+
 // 获取应用实例对象
 const app = createApp(App)
 
@@ -49,6 +52,9 @@ app.use(router)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+// 安装自定义指令
+app.use(directives)
 
 // 将应用点挂载到挂载点上
 app.mount('#app')

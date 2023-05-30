@@ -61,5 +61,5 @@ export const useUserStore = defineStore('User', {
       REMOVE_TOKEN()
     },
   },
-  getters: {}
+  getters: {},
 })
