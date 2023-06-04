@@ -72,13 +72,12 @@
           <el-input
             placeholder="请输入品牌名称"
             v-model="trademarkParams.tmName"
-            v-focus
           />
         </el-form-item>
         <el-form-item label="品牌LOGO" label-width="120px" prop="logoUrl">
           <el-upload
             class="avatar-uploader"
-            action="/api/admin/product/fileUpload"
+            :action="setting.fileUpload"
             :before-upload="beforeAvatarUpload"
             :on-success="handleAvatarSuccess"
             :show-file-list="false"
@@ -106,6 +105,9 @@
 <script setup lang="ts">
 // 引入组合式API
 import { reactive, onMounted, ref, nextTick } from 'vue'
+
+// 引入通用设置
+import setting from '@/setting'
 
 // 引入tradmark api
 import {
@@ -292,28 +294,5 @@ export default {
   width: 178px;
   height: 178px;
   display: block;
-}
-</style>
-
-<style>
-.avatar-uploader .el-upload {
-  border: 1px dashed var(--el-border-color);
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: var(--el-transition-duration-fast);
-}
-
-.avatar-uploader .el-upload:hover {
-  border-color: var(--el-color-primary);
-}
-
-.el-icon.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  text-align: center;
 }
 </style>

@@ -2,14 +2,36 @@
   <el-card>
     <el-form :inline="true">
       <el-form-item label="一级分类">
-        <el-select :disabled="sceen==0? false : true" placeholder="请选择" size="large" v-model="categoryStore.c1Id" @change="getC2">
-          <el-option v-for="c1 in categoryStore.c1Arr" :key="c1.id" :label="c1.name" :value="c1.id" />
+        <el-select
+          :disabled="sceen == 0 ? false : true"
+          placeholder="请选择"
+          size="large"
+          v-model="categoryStore.c1Id"
+          @change="getC2"
+        >
+          <el-option
+            v-for="c1 in categoryStore.c1Arr"
+            :key="c1.id"
+            :label="c1.name"
+            :value="c1.id"
+          />
         </el-select>
       </el-form-item>
       <el-form-item label="二级分类">
-        <el-select :disabled="sceen==0? false : true" placeholder="请选择" size="large" v-model="categoryStore.c2Id" @change="getC3">
+        <el-select
+          :disabled="sceen == 0 ? false : true"
+          placeholder="请选择"
+          size="large"
+          v-model="categoryStore.c2Id"
+          @change="getC3"
+        >
           <template v-if="categoryStore.c1Id">
-            <el-option v-for="c2 in categoryStore.c2Arr" :key="c2.id" :label="c2.name" :value="c2.id" />
+            <el-option
+              v-for="c2 in categoryStore.c2Arr"
+              :key="c2.id"
+              :label="c2.name"
+              :value="c2.id"
+            />
           </template>
           <template v-else>
             <el-option label="请先选择一级分类" disabled />
@@ -17,9 +39,19 @@
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select :disabled="sceen==0? false : true" placeholder="请选择" size="large" v-model="categoryStore.c3Id">
+        <el-select
+          :disabled="sceen == 0 ? false : true"
+          placeholder="请选择"
+          size="large"
+          v-model="categoryStore.c3Id"
+        >
           <template v-if="categoryStore.c2Id">
-            <el-option v-for="c3 in categoryStore.c3Arr" :key="c3.id" :label="c3.name" :value="c3.id" />
+            <el-option
+              v-for="c3 in categoryStore.c3Arr"
+              :key="c3.id"
+              :label="c3.name"
+              :value="c3.id"
+            />
           </template>
           <template v-else>
             <el-option label="请先选择二级分类" disabled />
@@ -51,9 +83,9 @@ const getCategoryC1 = () => {
 // 当已有一级分类被选中时，获取二级分类数据
 const getC2 = () => {
   // 清除二、三级分类的相关数据
-  categoryStore.c2Id = '',
-  categoryStore.c3Arr = [],
-  categoryStore.c3Id = ''
+  ;(categoryStore.c2Id = ''),
+    (categoryStore.c3Arr = []),
+    (categoryStore.c3Id = '')
   categoryStore.getC2()
 }
 
@@ -70,4 +102,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang='scss'></style>
+<style scoped lang="scss"></style>

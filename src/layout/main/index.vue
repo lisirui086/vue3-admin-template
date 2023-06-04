@@ -17,12 +17,15 @@ let useSetting = useSettingStore()
 let flag = ref(true)
 
 // 侦听刷新按钮值的变化
-watch(() => useSetting.refresh, () => {
-  flag.value = false
-  nextTick(() => {
-    flag.value = true
-  })
-})
+watch(
+  () => useSetting.refresh,
+  () => {
+    flag.value = false
+    nextTick(() => {
+      flag.value = true
+    })
+  },
+)
 </script>
 <script lang="ts">
 export default {

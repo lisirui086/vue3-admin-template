@@ -1,13 +1,13 @@
 // 创建三级联动组件相关的仓库
 
-import { defineStore } from "pinia"
+import { defineStore } from 'pinia'
 
 // 引入三级联动相关的api接口
 import { reqC1, reqC2, reqC3 } from '@/api/product/attr/index'
 
 // 引入属性管理类型的ts类型
 import type { CategoryResponseData } from '@/api/product/attr/type'
-import { CategoryState } from "./types/type"
+import { CategoryState } from './types/type'
 
 export const useCategoryStore = defineStore('category', {
   state: (): CategoryState => {
@@ -21,13 +21,13 @@ export const useCategoryStore = defineStore('category', {
       c2Id: '',
       // 三级分类的列表和id
       c3Arr: [],
-      c3Id: ''
+      c3Id: '',
     }
   },
   actions: {
     // 获取一级分类列表数据
     async getC1() {
-      let res:CategoryResponseData = await reqC1()
+      let res: CategoryResponseData = await reqC1()
       if (res.code == 200) {
         this.c1Arr = res.data
       }
@@ -45,7 +45,7 @@ export const useCategoryStore = defineStore('category', {
       if (res.code == 200) {
         this.c3Arr = res.data
       }
-    }
+    },
   },
-  getters: {}
+  getters: {},
 })

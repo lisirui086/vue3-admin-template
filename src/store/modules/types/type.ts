@@ -14,10 +14,10 @@ export interface UserState {
 
 // 定义 category 小仓库state类型
 export interface CategoryState {
-  c1Arr: CategoryObj[],
-  c1Id: number | string,
-  c2Arr: CategoryObj[],
-  c2Id: number | string,
-  c3Arr: CategoryObj[],
-  c3Id: number | string,
+  c1Arr: CategoryObj[]
+  c1Id: number | string
+  c2Arr: CategoryObj[]
+  c2Id: number | string
+  c3Arr: CategoryObj[]
+  c3Id: number | string
 }

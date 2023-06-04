@@ -3,6 +3,6 @@ const focus = {
   mounted(el) {
     // console.log(el)
     el.focus()
-  }
+  },
 }
 export default focus

@@ -5,7 +5,7 @@ import Category from './Category/index.vue'
 // 全局组件的对象
 const allGloablComponent = {
   SvgIcon,
-  Category
+  Category,
 }
 
 // 对外暴露插件对象

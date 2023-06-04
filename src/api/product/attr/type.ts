@@ -3,7 +3,6 @@
 // 引入user.ts内的部接口返回的数据都拥有的ts类型
 import type { responseData } from '@/api/user/type'
 
-
 // 一二三、级分类的参数类型
 export interface CategoryObj {
   id: number | string
@@ -21,7 +20,7 @@ export interface CategoryResponseData extends responseData {
 export interface attrValueList {
   id?: number
   valueName: string
-  attrId?: number,
+  attrId?: number
   flag?: boolean
 }
 
