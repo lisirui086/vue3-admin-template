@@ -44,7 +44,8 @@ export interface SpuImage {
   createTime?: string
   updateTime?: string
   name?: string
-  url?: string
+  url?: string,
+  select?: boolean | null
 }
 
 // 获取SPU下图片响应的ts类型
@@ -78,6 +79,7 @@ export interface SaleAttr {
   saleAttrName: string
   spuSaleAttrValueList: SpuSaleAttrValueList
   saleAttrValue?: string
+  saleIdAndValueId?: string
 }
 
 // 销售属性数据响应的ts类型
@@ -96,4 +98,34 @@ export interface SaleOptions {
 // 获取整个项目的销售属性响应的ts类型
 export interface SaleOptionsResponse extends responseData {
   data: SaleOptions[]
+}
+
+// SKU的销售属性
+export interface SkuSale {
+  saleAttrId: number | string
+  saleAttrValueId: number | string
+}
+// SKU的平台属性
+export interface SkuAttr {
+  attrId: number | string
+  valueId: number | string
+}
+
+// SKU数据内容
+export interface SkuData {
+  category3Id: number | string
+  spuId: number | string
+  tmId: number | string
+  skuName: string
+  price: number | string
+  weight: number | string
+  skuDesc: string
+  skuAttrValueList?: SkuAttr[]
+  skuDefaultImg: string
+  skuSaleAttrValueList?: SkuSale[]
+}
+
+// 获取SPU下全部售卖商品数据的响应结果
+export interface SkuInfoDataResponse extends responseData {
+  data: SkuData[]
 }

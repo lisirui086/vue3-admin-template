@@ -10,7 +10,9 @@ import type {
   SpuImageListResponse,
   SaleAttrResponse,
   SaleOptionsResponse,
-  SpuData
+  SpuData,
+  SkuData,
+  SkuInfoDataResponse
 } from './type'
 
 // 所有接口
@@ -28,7 +30,13 @@ enum API {
   // 保存新的spu
   SAVESPU_URL = '/admin/product/saveSpuInfo',
   // 修改已有的SPU
-  EDITSPU_URL = '/admin/product/updateSpuInfo'
+  EDITSPU_URL = '/admin/product/updateSpuInfo',
+  // 添加新的SKU
+  ADDSKU_URL = '/admin/product/saveSkuInfo',
+  // 查看某一个SPU下全部售卖的商品
+  SKUINFO_URL = '/admin/product/findBySpuId/',
+  // 删除已有的SPU
+  REMOVESKU_URL ='/admin/product/deleteSpu/'
 }
 
 // 获取已有SPU列表
@@ -51,9 +59,10 @@ export const reqSpuImage = (spuId: number) =>
 // 获取某个SPU下全部销售属性
 export const reqSpuSaleAttr = (spuId: number) =>
   requset.get<any, SaleAttrResponse>(API.SPUHASSALEATTR_URL + spuId)
-  
+
 // 获取整个项目的销售属性
-export const reqAllSaleAttr = () => requset.get<any, SaleOptionsResponse>(API.ALLSALEATTR_URL)
+export const reqAllSaleAttr = () =>
+  requset.get<any, SaleOptionsResponse>(API.ALLSALEATTR_URL)
 
 // 添加 or 修改SPU
 export const reqAddOrEditSpu = (data: SpuData) => {
@@ -65,3 +74,13 @@ export const reqAddOrEditSpu = (data: SpuData) => {
     return requset.post<any, any>(API.SAVESPU_URL, data)
   }
 }
+
+// 添加SKU
+export const reqAddSku = (data: SkuData) =>
+  requset.post<any, any>(API.ADDSKU_URL, data)
+
+// 查看某个SPU下全部售卖的商品
+export const reqSkuList = (spuId: number | string) => requset.get<any, SkuInfoDataResponse>(API.SKUINFO_URL+spuId)
+
+// 删除已有的SPU
+export const reqRemoveSku = (spuId: number | string) => requset.delete<any, any>(API.REMOVESKU_URL+spuId)

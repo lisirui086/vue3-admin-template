@@ -13,7 +13,7 @@ import { routes } from '@/router/routes'
 import { SET_TOKEN, REMOVE_TOKEN, GET_TOKEN } from '@/utils/token'
 
 // 引入ts类型
-import type { loginForm, loginResponseData } from '@/api/user/type'
+import type { loginForm, loginResponseData } from '@/api/user/mockType'
 import type { UserState } from './types/type'
 
 export const useUserStore = defineStore('User', {
