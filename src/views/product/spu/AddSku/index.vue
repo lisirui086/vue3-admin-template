@@ -1,34 +1,72 @@
 <template>
   <el-card style="margin: 10px 0">
-    <el-form label-width="100" :rules="rules" ref="ruleFormRef" :model="skuParams">
+    <el-form
+      label-width="100"
+      :rules="rules"
+      ref="ruleFormRef"
+      :model="skuParams"
+    >
       <el-form-item label="SKU名称" prop="skuName">
-        <el-input placeholder="SKU名称" v-model.trim="skuParams.skuName"></el-input>
+        <el-input
+          placeholder="SKU名称"
+          v-model.trim="skuParams.skuName"
+        ></el-input>
       </el-form-item>
       <el-form-item label="价格(元)">
-        <el-input-number v-model="skuParams.price" :min="1" :max="999999" value-on-clear="min" />
+        <el-input-number
+          v-model="skuParams.price"
+          :min="1"
+          :max="999999"
+          value-on-clear="min"
+        />
       </el-form-item>
       <el-form-item label="重量(克)">
-        <el-input-number v-model="skuParams.weight" :min="1" :max="100000" value-on-clear="min" />
+        <el-input-number
+          v-model="skuParams.weight"
+          :min="1"
+          :max="100000"
+          value-on-clear="min"
+        />
       </el-form-item>
       <el-form-item label="SKU描述" prop="skuDesc">
-        <el-input placeholder="SKU描述" type="textarea" v-model.trim="skuParams.skuDesc"></el-input>
+        <el-input
+          placeholder="SKU描述"
+          type="textarea"
+          v-model.trim="skuParams.skuDesc"
+        ></el-input>
       </el-form-item>
       <el-form-item label="平台属性">
         <el-form inline="true" label-width="80">
-          <el-form-item v-for="item in attrArr" :key="item.id" :label="item.attrName">
+          <el-form-item
+            v-for="item in attrArr"
+            :key="item.id"
+            :label="item.attrName"
+          >
             <el-select placeholder="请选择" v-model="item.attrIdAndValueId">
-              <el-option v-for="attr in item.attrValueList" :key="attr.id" :label="attr.valueName"
-                :value="`${item.id}:${attr.id}`"></el-option>
+              <el-option
+                v-for="attr in item.attrValueList"
+                :key="attr.id"
+                :label="attr.valueName"
+                :value="`${item.id}:${attr.id}`"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-form>
       </el-form-item>
       <el-form-item label="销售属性">
         <el-form inline="true" label-width="80">
-          <el-form-item v-for="item in saleAttr" :key="item.id" :label="item.saleAttrName">
+          <el-form-item
+            v-for="item in saleAttr"
+            :key="item.id"
+            :label="item.saleAttrName"
+          >
             <el-select placeholder="请选择" v-model="item.saleIdAndValueId">
-              <el-option v-for="sale in item.spuSaleAttrValueList" :key="sale.id" :label="sale.saleAttrValueName"
-                :value="`${item.id}:${sale.id}`"></el-option>
+              <el-option
+                v-for="sale in item.spuSaleAttrValueList"
+                :key="sale.id"
+                :label="sale.saleAttrValueName"
+                :value="`${item.id}:${sale.id}`"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-form>
@@ -38,7 +76,11 @@
           <el-table-column type="selection"></el-table-column>
           <el-table-column label="图片" width="130">
             <template #="{ row, $index }">
-              <el-image style="width: 100px; height: 100px" :src="row.imgUrl" fit="fill" />
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="row.imgUrl"
+                fit="fill"
+              />
             </template>
           </el-table-column>
           <el-table-column label="名称">
@@ -48,7 +90,9 @@
           </el-table-column>
           <el-table-column label="操作" width="130">
             <template #="{ row, $index }">
-              <el-button type="primary" @click="handleSetImage(row)">设为默认</el-button>
+              <el-button type="primary" @click="handleSetImage(row)">
+                设为默认
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -66,7 +110,16 @@
 import { ref, reactive } from 'vue'
 
 // 引入spu api 和ts类型
-import type { SpuData, SpuImageListResponse, SaleAttrResponse, SpuImage, SaleAttr, SkuData, SkuSale, SkuAttr } from '@/api/product/spu/type'
+import type {
+  SpuData,
+  SpuImageListResponse,
+  SaleAttrResponse,
+  SpuImage,
+  SaleAttr,
+  SkuData,
+  SkuSale,
+  SkuAttr,
+} from '@/api/product/spu/type'
 import type { AttrResponseData, Attr } from '@/api/product/attr/type'
 import { reqSpuImage, reqSpuSaleAttr, reqAddSku } from '@/api/product/spu/index'
 import { reqAttr } from '@/api/product/attr/index'
@@ -96,12 +149,12 @@ let ruleFormRef = ref<FormInstance>()
 let rules = reactive<FormRules>({
   skuName: [
     { required: true, message: '请输入SKU名称', trigger: 'blur' },
-    { min: 2, max: 10, message: '名称长度在2-10个字符之间', trigger: 'blur' }
+    { min: 2, max: 10, message: '名称长度在2-10个字符之间', trigger: 'blur' },
   ],
   skuDesc: [
     { required: true, message: '请输入SKU描述', trigger: 'blur' },
-    { min: 2, max: 100, message: '描述长度在2-100字符之间', trigger: 'blur' }
-  ]
+    { min: 2, max: 100, message: '描述长度在2-100字符之间', trigger: 'blur' },
+  ],
 })
 
 // 存储SKU整体数据
@@ -115,7 +168,7 @@ let skuParams = reactive<SkuData>({
   skuDesc: '',
   skuAttrValueList: [],
   skuDefaultImg: '',
-  skuSaleAttrValueList: []
+  skuSaleAttrValueList: [],
 })
 
 // 取消按钮回调
@@ -124,7 +177,11 @@ const cancel = () => {
 }
 
 // 当前SKU组件
-const initSkuData = async (c1Id: number | string, c2Id: number | string, spu: SpuData) => {
+const initSkuData = async (
+  c1Id: number | string,
+  c2Id: number | string,
+  spu: SpuData,
+) => {
   // 收集数据
   skuParams.category3Id = spu.category3Id
   skuParams.spuId = spu.id
@@ -163,27 +220,33 @@ const saveSku = async (formEl: FormInstance | undefined) => {
   await formEl.validate()
 
   // 整理参数，平台属性和销售属性
-  skuParams.skuSaleAttrValueList = saleAttr.value.reduce((perv: SkuSale[], next: SaleAttr) => {
-    if (next.saleIdAndValueId) {
-      let [saleAttrId, saleAttrValueId] = next.saleIdAndValueId.split(':')
-      perv.push({
-        saleAttrId,
-        saleAttrValueId
-      })
-    }
-    return perv
-  }, [])
+  skuParams.skuSaleAttrValueList = saleAttr.value.reduce(
+    (perv: SkuSale[], next: SaleAttr) => {
+      if (next.saleIdAndValueId) {
+        let [saleAttrId, saleAttrValueId] = next.saleIdAndValueId.split(':')
+        perv.push({
+          saleAttrId,
+          saleAttrValueId,
+        })
+      }
+      return perv
+    },
+    [],
+  )
 
-  skuParams.skuAttrValueList = attrArr.value.reduce((perv: SkuAttr[], next: Attr) => {
-    if (next.attrIdAndValueId) {
-      let [attrId, valueId] = next.attrIdAndValueId.split(':')
-      perv.push({
-        attrId,
-        valueId
-      })
-    }
-    return perv
-  }, [])
+  skuParams.skuAttrValueList = attrArr.value.reduce(
+    (perv: SkuAttr[], next: Attr) => {
+      if (next.attrIdAndValueId) {
+        let [attrId, valueId] = next.attrIdAndValueId.split(':')
+        perv.push({
+          attrId,
+          valueId,
+        })
+      }
+      return perv
+    },
+    [],
+  )
 
   // 发请求
   let res = await reqAddSku(skuParams)
@@ -195,28 +258,27 @@ const saveSku = async (formEl: FormInstance | undefined) => {
   }
 }
 
-
 // 重置表单数据
 const initReset = () => {
   // 清空数据
   Object.assign(skuParams, {
-      category3Id: '',
-      spuId: '',
-      tmId: '',
-      skuName: '',
-      price: '',
-      weight: '',
-      skuDesc: '',
-      skuAttrValueList: [],
-      skuDefaultImg: '',
-      skuSaleAttrValueList: []
-    })
+    category3Id: '',
+    spuId: '',
+    tmId: '',
+    skuName: '',
+    price: '',
+    weight: '',
+    skuDesc: '',
+    skuAttrValueList: [],
+    skuDefaultImg: '',
+    skuSaleAttrValueList: [],
+  })
 }
 
 // 对外暴露
 defineExpose({
   initSkuData,
-  initReset
+  initReset,
 })
 </script>
 

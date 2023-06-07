@@ -44,7 +44,7 @@ export interface SpuImage {
   createTime?: string
   updateTime?: string
   name?: string
-  url?: string,
+  url?: string
   select?: boolean | null
 }
 

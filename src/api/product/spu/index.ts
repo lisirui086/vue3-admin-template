@@ -12,7 +12,7 @@ import type {
   SaleOptionsResponse,
   SpuData,
   SkuData,
-  SkuInfoDataResponse
+  SkuInfoDataResponse,
 } from './type'
 
 // 所有接口
@@ -36,17 +36,17 @@ enum API {
   // 查看某一个SPU下全部售卖的商品
   SKUINFO_URL = '/admin/product/findBySpuId/',
   // 删除已有的SPU
-  REMOVESKU_URL ='/admin/product/deleteSpu/'
+  REMOVESKU_URL = '/admin/product/deleteSpu/',
 }
 
 // 获取已有SPU列表
 export const reqHasSpu = (
   page: number,
   limit: number,
-  category3Id: number | string
+  category3Id: number | string,
 ) =>
   requset.get<any, HasSpuResponseData>(
-    API.HASSPU_URL + `${page}/${limit}?category3Id=${category3Id}`
+    API.HASSPU_URL + `${page}/${limit}?category3Id=${category3Id}`,
   )
 // 获取所有品牌数据
 export const reqAllTrademark = () =>
@@ -80,7 +80,9 @@ export const reqAddSku = (data: SkuData) =>
   requset.post<any, any>(API.ADDSKU_URL, data)
 
 // 查看某个SPU下全部售卖的商品
-export const reqSkuList = (spuId: number | string) => requset.get<any, SkuInfoDataResponse>(API.SKUINFO_URL+spuId)
+export const reqSkuList = (spuId: number | string) =>
+  requset.get<any, SkuInfoDataResponse>(API.SKUINFO_URL + spuId)
 
 // 删除已有的SPU
-export const reqRemoveSku = (spuId: number | string) => requset.delete<any, any>(API.REMOVESKU_URL+spuId)
+export const reqRemoveSku = (spuId: number | string) =>
+  requset.delete<any, any>(API.REMOVESKU_URL + spuId)
