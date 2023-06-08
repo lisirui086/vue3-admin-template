@@ -4,11 +4,23 @@
 import type { responseData } from '@/api/user/type'
 import type { SkuData } from '@/api/product/spu/type'
 
+// SKU内的图片ts类型
+export interface SkuImage {
+  createTime: string
+  id:number
+  imgName:string
+  imgUrl:string
+  isDefault:string | number 
+  skuId:number
+  spuImgId:number
+  updateTime:string
+}
+
 // SKU完整数据ts类型
 export interface SkuAllData extends SkuData {
-  id: number
-  isSale: number
-  skuImageList: []
+  id?: number
+  isSale?: number
+  skuImageList?: SkuImage[]
 }
 
 // 获取SKU列表接口返回的数据ts类型
@@ -28,3 +40,7 @@ export interface SkuResponseData extends responseData {
   }
 }
 
+// 获取SKU详情返回的响应数据ts类型
+export interface SkuInfoResponseData extends responseData {
+  data: SkuAllData
+}

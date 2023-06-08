@@ -266,8 +266,9 @@ const initReset = () => {
     spuId: '',
     tmId: '',
     skuName: '',
-    price: '',
-    weight: '',
+    // 价格和重量
+    price: 1,
+    weight: 1,
     skuDesc: '',
     skuAttrValueList: [],
     skuDefaultImg: '',

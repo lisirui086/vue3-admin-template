@@ -9,12 +9,13 @@ import type { Records } from '@/api/product/trademark/type'
 // SPU数据的ts类型
 export interface SpuData {
   id?: number
-  spuName: string
+  spuName?: string
   description: string
-  category3Id: number | string
-  tmId: number | string
+  category3Id?: number | string
+  tmId?: number | string
   spuSaleAttrList: null | SaleAttr[]
   spuImageList: null | SpuImage[]
+  spuId? :number
 }
 
 // SPU数据别名
@@ -104,11 +105,15 @@ export interface SaleOptionsResponse extends responseData {
 export interface SkuSale {
   saleAttrId: number | string
   saleAttrValueId: number | string
+  saleAttrName?: string
+  saleAttrValueName?: string
 }
 // SKU的平台属性
 export interface SkuAttr {
   attrId: number | string
   valueId: number | string
+  attrName?: string
+  valueName?: string
 }
 
 // SKU数据内容
