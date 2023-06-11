@@ -11,7 +11,7 @@
         添加SPU
       </el-button>
       <!-- 展示SPU数据列表 -->
-      <el-table style="margin: 10px 0" border :data="records">
+      <el-table style="margin: 10px 0" border :data="records"  height="280">
         <el-table-column
           label="序号"
           type="index"

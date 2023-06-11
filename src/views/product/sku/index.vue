@@ -2,12 +2,31 @@
   <el-card>
     <!-- SKU表单 -->
     <el-table border style="margin: 10px 0" :data="skuList" height="440">
-      <el-table-column type="index" label="序号" align="center" width="60"></el-table-column>
-      <el-table-column label="名称" prop="skuName" header-align="center" show-overflow-tooltip></el-table-column>
-      <el-table-column label="描述" prop="skuDesc" header-align="center" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        type="index"
+        label="序号"
+        align="center"
+        width="60"
+      ></el-table-column>
+      <el-table-column
+        label="名称"
+        prop="skuName"
+        header-align="center"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="描述"
+        prop="skuDesc"
+        header-align="center"
+        show-overflow-tooltip
+      ></el-table-column>
       <el-table-column label="默认图片" header-align="center" width="130">
         <template #="{ row, $index }">
-          <el-image style="width: 100px; height: 100px" :src="row.skuDefaultImg" fit="fill" />
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="row.skuDefaultImg"
+            fit="fill"
+          />
         </template>
       </el-table-column>
       <el-table-column label="重量(克)" header-align="center" width="80">
@@ -22,12 +41,34 @@
       </el-table-column>
       <el-table-column label="操作" fixed="right" header-align="center">
         <template #="{ row, $index }">
-          <el-button @click="updateSkuSale(row, $index)" size="small" :title="row.isSale ? '正常上架' : '已下架状态'"
-            :icon="row.isSale ? 'Bottom' : 'Top'" :type="row.isSale ? '' : 'success'"></el-button>
-          <el-button @click="ElMessage.warning('API正在开发中...')" size="small" icon="EditPen" type="primary"></el-button>
-          <el-button @click="seeSkuInfo(row)" size="small" icon="InfoFilled" type="info"></el-button>
-          <el-popconfirm width="220" confirm-button-text="删除" cancel-button-text="取消" icon="InfoFilled"
-            icon-color="#626AEF" :title="`确定要删除序号${$index + 1}吗？`" @confirm="deleteSku(row, $index)">
+          <el-button
+            @click="updateSkuSale(row, $index)"
+            size="small"
+            :title="row.isSale ? '正常上架' : '已下架状态'"
+            :icon="row.isSale ? 'Bottom' : 'Top'"
+            :type="row.isSale ? '' : 'success'"
+          ></el-button>
+          <el-button
+            @click="ElMessage.warning('API正在开发中...')"
+            size="small"
+            icon="EditPen"
+            type="primary"
+          ></el-button>
+          <el-button
+            @click="seeSkuInfo(row)"
+            size="small"
+            icon="InfoFilled"
+            type="info"
+          ></el-button>
+          <el-popconfirm
+            width="220"
+            confirm-button-text="删除"
+            cancel-button-text="取消"
+            icon="InfoFilled"
+            icon-color="#626AEF"
+            :title="`确定要删除序号${$index + 1}吗？`"
+            @confirm="deleteSku(row, $index)"
+          >
             <template #reference>
               <el-button size="small" icon="Delete" type="danger"></el-button>
             </template>
@@ -36,9 +77,16 @@
       </el-table-column>
     </el-table>
     <!-- 分页器 -->
-    <el-pagination v-model:current-page="pageData.page" v-model:page-size="pageData.limit" :page-sizes="[5, 10, 15, 20]"
-      background="background" layout="prev, pager, next, jumper, ->, sizes, total" :total="pageData.total"
-      @current-change="getSkuList" @size-change="handleLimit" />
+    <el-pagination
+      v-model.lazy:current-page="pageData.pageNo"
+      v-model:page-size="pageData.limit"
+      :page-sizes="[5, 10, 15, 20]"
+      background
+      layout="prev, pager, next, jumper, ->, sizes, total"
+      :total="pageData.total"
+      @current-change="getSkuList"
+      @size-change="handleLimit"
+    />
     <!-- SKU详情抽屉组件 -->
     <el-drawer v-model="drawer" title="SKU详情">
       <template #default>
@@ -61,20 +109,39 @@
         <el-row>
           <el-col :span="6">平台属性</el-col>
           <el-col :span="18">
-            <el-tag v-for="attr in skuInfoData.skuAttrValueList" :key="attr.attrId">{{ attr.attrName }}</el-tag>
+            <el-tag
+              v-for="attr in skuInfoData.skuAttrValueList"
+              :key="attr.attrId"
+            >
+              {{ attr.attrName }}
+            </el-tag>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="6">销售属性</el-col>
-          <el-col :span="18"><el-tag type="warning" v-for="sale in skuInfoData.skuSaleAttrValueList"
-              :key="sale.saleAttrValueId">{{ sale.saleAttrValueName }}</el-tag></el-col>
+          <el-col :span="18">
+            <el-tag
+              type="warning"
+              v-for="sale in skuInfoData.skuSaleAttrValueList"
+              :key="sale.saleAttrValueId"
+            >
+              {{ sale.saleAttrValueName }}
+            </el-tag>
+          </el-col>
         </el-row>
         <el-row>
           <el-col :span="6">商品图片</el-col>
           <el-col :span="18">
             <el-carousel height="150px" type="card">
-              <el-carousel-item v-for="img in skuInfoData.skuImageList" :key="img.id">
-                <el-image style="width: 100%; height: 100%" :src="img.imgUrl" fit="cover" />
+              <el-carousel-item
+                v-for="img in skuInfoData.skuImageList"
+                :key="img.id"
+              >
+                <el-image
+                  style="width: 100%; height: 100%"
+                  :src="img.imgUrl"
+                  fit="cover"
+                />
               </el-carousel-item>
             </el-carousel>
           </el-col>
@@ -94,15 +161,19 @@ import {
   reqSaleSku,
   reqCancelSaleSku,
   reqSkuInfo,
-  reqDeleteSku
+  reqDeleteSku,
 } from '@/api/product/sku/index'
-import type { SkuResponseData, SkuAllData, SkuInfoResponseData } from '@/api/product/sku/type'
+import type {
+  SkuResponseData,
+  SkuAllData,
+  SkuInfoResponseData,
+} from '@/api/product/sku/type'
 import { ElMessage } from 'element-plus'
 
 // 页码，条数，总条数。分页器相关数据
 let pageData = reactive({
-  page: 1,
-  limit: 10,
+  pageNo: 1,
+  limit: 5,
   total: 0,
 })
 
@@ -124,15 +195,15 @@ let skuInfoData = ref<SkuAllData>({
   skuDefaultImg: '',
   skuImageList: [],
   skuAttrValueList: [],
-  skuSaleAttrValueList: []
+  skuSaleAttrValueList: [],
 })
 
 // 获取sku列表
 const getSkuList = async (pager = 1) => {
   // 默认请求第一页的数据
-  pageData.page = pager
+  pageData.pageNo = pager
   // 发请求
-  let res: SkuResponseData = await reqSkuList(pageData.page, pageData.limit)
+  let res: SkuResponseData = await reqSkuList(pageData.pageNo, pageData.limit)
 
   // 状态码成功则存储数据
   if (res.code == 200) {
@@ -170,7 +241,7 @@ const updateSkuSale = async (sku: SkuAllData, index: number) => {
     }
   }
   // 获取最新sku列表
-  getSkuList()
+  getSkuList(pageData.pageNo)
 }
 
 // 查看SKU详情
@@ -196,20 +267,19 @@ const deleteSku = async (sku: SkuAllData, index: number) => {
       ElMessage.success(`序号${index} 删除成功`)
       // 获取最新sku列表
       getSkuList()
-      break;
+      break
     case 201:
       ElMessage.error(`序号${index}是系统数据，不能删除`)
-      break;
+      break
     default:
       ElMessage.error(`序号${index} 删除失败`)
-      break;
+      break
   }
-
 }
 
 // 组件挂载完毕后
 onMounted(() => {
-  getSkuList(skuList.value.length > 1 ? pageData.page : pageData.page -1)
+  getSkuList(skuList.value.length > 1 ? pageData.pageNo : pageData.pageNo - 1)
 })
 </script>
 <script lang="ts">

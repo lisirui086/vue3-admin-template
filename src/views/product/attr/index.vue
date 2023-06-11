@@ -12,7 +12,7 @@
           添加属性
         </el-button>
         <!-- 展示属性值列表 -->
-        <el-table border style="margin: 10px 0" :data="attrArr">
+        <el-table border style="margin: 10px 0" :data="attrArr"  height="320">
           <el-table-column
             label="序号"
             type="index"
@@ -86,6 +86,7 @@
           border
           style="margin: 10px 0"
           :data="attrParams.attrValueList"
+          height="250"
         >
           <el-table-column
             type="index"

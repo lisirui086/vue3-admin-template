@@ -7,13 +7,13 @@ import type { SkuData } from '@/api/product/spu/type'
 // SKU内的图片ts类型
 export interface SkuImage {
   createTime: string
-  id:number
-  imgName:string
-  imgUrl:string
-  isDefault:string | number 
-  skuId:number
-  spuImgId:number
-  updateTime:string
+  id: number
+  imgName: string
+  imgUrl: string
+  isDefault: string | number
+  skuId: number
+  spuImgId: number
+  updateTime: string
 }
 
 // SKU完整数据ts类型

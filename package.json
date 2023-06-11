@@ -21,6 +21,7 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.21.8",
     "@element-plus/icons-vue": "^2.1.0",
+    "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
     "element-plus": "^2.3.4",
     "eslint-plugin-import": "^2.27.5",

@@ -15,7 +15,7 @@ export interface SpuData {
   tmId?: number | string
   spuSaleAttrList: null | SaleAttr[]
   spuImageList: null | SpuImage[]
-  spuId? :number
+  spuId?: number
 }
 
 // SPU数据别名
