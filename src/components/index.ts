@@ -7,7 +7,7 @@ import SelectKey from './SelectKey/index.vue'
 const allGloablComponent = {
   SvgIcon,
   Category,
-  SelectKey
+  SelectKey,
 }
 
 // 对外暴露插件对象

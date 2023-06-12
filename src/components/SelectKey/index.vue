@@ -4,12 +4,18 @@
       <el-form-item :label="label">
         <el-input :placeholder="placeholder" clearable v-model="keyword">
           <template #append>
-            <el-button type="primary" icon="Search" @click="emitKey"></el-button>
+            <el-button
+              type="primary"
+              icon="Search"
+              @click="emitKey"
+            ></el-button>
           </template>
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="warning" icon="Refresh" @click="refresh = !refresh">重置</el-button>
+        <el-button type="warning" icon="Refresh" @click="refresh = !refresh">
+          重置
+        </el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -38,5 +44,4 @@ let useSetting = useSettingStore()
 const { refresh } = storeToRefs(useSetting)
 </script>
 
-<style scoped lang='scss'>
-</style>
+<style scoped lang="scss"></style>
