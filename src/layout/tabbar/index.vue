@@ -17,11 +17,5 @@ import Fun from './fun/index.vue'
   height: 100%;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(
-    to right,
-    rgb(209, 203, 203),
-    rgb(232, 223, 223),
-    rgb(243, 224, 224)
-  );
 }
 </style>

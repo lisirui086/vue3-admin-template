@@ -20,18 +20,18 @@ enum API {
   // 给角色分配权限
   DOASSGIN_URL = '/admin/acl/permission/doAssign?',
   // 删除职位
-  REMOVEROLE_URL = '/admin/acl/role/remove/'
+  REMOVEROLE_URL = '/admin/acl/role/remove/',
 }
 
 // 获取角色分页列表
 export const reqAllRole = (page: number, limit: number, roleName?: string) => {
   if (roleName) {
     return requset.get<any, AllRoleResponseData>(
-      API.ALLROLE_URL + `${page}/${limit}?roleName=${roleName}`
+      API.ALLROLE_URL + `${page}/${limit}?roleName=${roleName}`,
     )
   } else {
     return requset.get<any, AllRoleResponseData>(
-      API.ALLROLE_URL + `${page}/${limit}`
+      API.ALLROLE_URL + `${page}/${limit}`,
     )
   }
 }
@@ -54,8 +54,9 @@ export const reqAllPermisstion = (roledId: number) =>
 // 给角色分配权限
 export const reqSetPermisstion = (roleId: number, permissionId: number[]) =>
   requset.post<any, any>(
-    API.DOASSGIN_URL + `roleId=${roleId}&permissionId=${permissionId}`
+    API.DOASSGIN_URL + `roleId=${roleId}&permissionId=${permissionId}`,
   )
 
 // 删除职位
-export const reqRemoveRole = (roleId: number) => requset.delete<any, any>(API.REMOVEROLE_URL+roleId)
+export const reqRemoveRole = (roleId: number) =>
+  requset.delete<any, any>(API.REMOVEROLE_URL + roleId)

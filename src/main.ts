@@ -31,6 +31,9 @@ import './permisstion'
 // 引入自定义指令
 import directives from '@/directives/index'
 
+// 引入element plus 暗黑主体
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 // 获取应用实例对象
 const app = createApp(App)
 
