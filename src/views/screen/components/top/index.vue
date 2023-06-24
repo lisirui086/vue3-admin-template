@@ -1,7 +1,9 @@
 <template>
   <div class="top">
     <div class="left">
-      <span class="lbtn">首页</span>
+      <span class="lbtn">
+        <router-link to="/" style="color: #29fcff; text-decoration:none;">首页</router-link>
+      </span>
     </div>
     <div class="center">
       <div class="title">智慧旅游可视化大数据屏幕</div>
@@ -21,10 +23,9 @@ import useNowDate from '@/hooks/useNowDate'
 
 // 当前时间
 let nowTime = useNowDate()
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .top {
   width: 100%;
   height: 40px;
@@ -43,7 +44,6 @@ let nowTime = useNowDate()
       float: right;
       background: url(../../images/dataScreen-header-btn-bg-l.png) no-repeat;
       background-size: 100% 100%;
-      color: #29fcff;
       font-size: 20px;
     }
   }
@@ -58,7 +58,7 @@ let nowTime = useNowDate()
       background-size: 100% 100%;
       text-align: center;
       line-height: 75px;
-      color: #29fcff;
+      color: $screen-font-color;
       font-size: 30px;
     }
   }
@@ -79,12 +79,12 @@ let nowTime = useNowDate()
       float: left;
       background: url(../../images/dataScreen-header-btn-bg-r.png) no-repeat;
       background-size: 100% 100%;
-      color: #29fcff;
+      color: $screen-font-color;
       font-size: 20px;
     }
 
     .time {
-      color: #29fcff;
+      color: $screen-font-color;
       font-size: 18px;
     }
   }

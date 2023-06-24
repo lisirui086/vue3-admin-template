@@ -1,22 +1,52 @@
 <template>
   <el-card>
     <!-- 菜单表格 -->
-    <el-table :data="menuList" style="width: 100%" row-key="id" border lazy
-      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }">
+    <el-table
+      :data="menuList"
+      style="width: 100%"
+      row-key="id"
+      border
+      lazy
+      :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+    >
       <el-table-column label="名称" prop="name" />
       <el-table-column label="权限值" prop="code" />
       <el-table-column label="修改时间" prop="updateTime" />
       <el-table-column label="操作">
         <template #="{ row, $index }">
-          <el-button @click="addMenu(row)" size="small" type="primary" :disabled="row.level == 4 ? true : false">{{
-            row.level == 3
-            ? '添加功能' : '添加菜单' }}</el-button>
-          <el-button size="small" type="info" :disabled="row.level == 1 ? true : false"
-            @click="editMenu(row)">编辑</el-button>
-          <el-popconfirm width="220" confirm-button-text="删除" cancel-button-text="取消" icon="InfoFilled" icon-color="red"
-            :title="`确定要删除${row.name}吗？`" @confirm="removeMenu(row)">
+          <el-button
+            @click="addMenu(row)"
+            size="small"
+            type="primary"
+            :disabled="row.level == 4 ? true : false"
+          >
+            {{ row.level == 3 ? '添加功能' : '添加菜单' }}
+          </el-button>
+          <el-button
+            size="small"
+            type="info"
+            :disabled="row.level == 1 ? true : false"
+            @click="editMenu(row)"
+          >
+            编辑
+          </el-button>
+          <el-popconfirm
+            width="220"
+            confirm-button-text="删除"
+            cancel-button-text="取消"
+            icon="InfoFilled"
+            icon-color="red"
+            :title="`确定要删除${row.name}吗？`"
+            @confirm="removeMenu(row)"
+          >
             <template #reference>
-              <el-button size="small" type="danger" :disabled="row.level == 1 ? true : false">删除</el-button>
+              <el-button
+                size="small"
+                type="danger"
+                :disabled="row.level == 1 ? true : false"
+              >
+                删除
+              </el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -24,8 +54,17 @@
     </el-table>
   </el-card>
   <!-- 添加|修改菜单项的对话框 -->
-  <el-dialog v-model="dialogFormVisible" :title="menuData.id ? `修改${oldOb.oldName}` : '新增'" width="450">
-    <el-form label-width="100" :model="menuData" :rules="Menurules" ref="MenuEl">
+  <el-dialog
+    v-model="dialogFormVisible"
+    :title="menuData.id ? `修改${oldOb.oldName}` : '新增'"
+    width="450"
+  >
+    <el-form
+      label-width="100"
+      :model="menuData"
+      :rules="Menurules"
+      ref="MenuEl"
+    >
       <el-form-item label="名称" prop="name">
         <el-input placeholder="请输入名称" v-model="menuData.name"></el-input>
       </el-form-item>
@@ -36,7 +75,9 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button type="primary" @click="saveMenu(MenuEl)" >{{ menuData.id? '修改' : '添加' }}</el-button>
+        <el-button type="primary" @click="saveMenu(MenuEl)">
+          {{ menuData.id ? '修改' : '添加' }}
+        </el-button>
       </span>
     </template>
   </el-dialog>
@@ -47,12 +88,21 @@
 import { onMounted, reactive, ref } from 'vue'
 
 // 引入菜单管理模块相关的api and ts类型
-import { reqAllPermisstion, reqAddOrEditPermisstion, reqRemoveMenu } from '@/api/acl/menu'
-import type { MenuResponseData, MenuList, MenuParams, MenuData } from '@/api/acl/menu/type'
+import {
+  reqAllPermisstion,
+  reqAddOrEditPermisstion,
+  reqRemoveMenu,
+} from '@/api/acl/menu'
+import type {
+  MenuResponseData,
+  MenuList,
+  MenuParams,
+  MenuData,
+} from '@/api/acl/menu/type'
 
 // 引入element plus 相关的ts
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
-import { nextTick } from 'vue';
+import { nextTick } from 'vue'
 
 // 存储菜单列表
 let menuList = ref<MenuList>([])
@@ -65,13 +115,13 @@ let menuData = reactive<MenuParams>({
   code: '',
   level: 0,
   name: '',
-  pid: 0
+  pid: 0,
 })
 
 // 备份数据
-let oldOb = reactive<{ oldName: string, oldCode: string }>({
+let oldOb = reactive<{ oldName: string; oldCode: string }>({
   oldName: '',
-  oldCode: ''
+  oldCode: '',
 })
 
 // 表格节点El
@@ -85,8 +135,12 @@ const Menurules = reactive<FormRules>({
   ],
   code: [
     { required: true, message: '请输入权限值', trigger: 'blur' },
-    { pattern: /^[0-9a-zA-Z.]{2,50}$/, message: '由数字、26个英文字母或者下划线组成,长度在2-50字之间', trigger: 'blur' },
-  ]
+    {
+      pattern: /^[0-9a-zA-Z.]{2,50}$/,
+      message: '由数字、26个英文字母或者下划线组成,长度在2-50字之间',
+      trigger: 'blur',
+    },
+  ],
 })
 
 // 获取菜单列表
@@ -102,7 +156,7 @@ const copyMenuData = () => {
   // 存储是否修改值了，没有修改值不发请求
   oldOb = {
     oldName: menuData.name,
-    oldCode: menuData.code
+    oldCode: menuData.code,
   }
 }
 
@@ -115,7 +169,7 @@ const addMenu = (menu: MenuData) => {
     level: 0,
     name: '',
     pid: 0,
-    id: ''
+    id: '',
   })
   // 删除id，防止上次操作时点编辑时保留了id
   delete menuData.id
@@ -164,21 +218,27 @@ const saveMenu = async (formEl: FormInstance | undefined) => {
     switch (res.code) {
       case 200:
         if (menuData.id) {
-          ElMessage.success(oldOb.oldName !== menuData.name ? `${oldOb.oldName}已成功修改为${menuData.name}` : `${oldOb.oldCode}已成功修改为${menuData.code}`)
+          ElMessage.success(
+            oldOb.oldName !== menuData.name
+              ? `${oldOb.oldName}已成功修改为${menuData.name}`
+              : `${oldOb.oldCode}已成功修改为${menuData.code}`,
+          )
         } else {
           ElMessage.success(`${menuData.name}新增成功`)
         }
         dialogFormVisible.value = false
         getMenuList()
-        break;
+        break
       case 201:
         ElMessage.warning(`${oldOb.oldName}是${res.data}`)
         dialogFormVisible.value = false
         getMenuList()
-        break;
+        break
       default:
-        ElMessage.error(menuData.id ? `${oldOb.oldName}修改失败` : `${oldOb.oldName}新增失败`)
-        break;
+        ElMessage.error(
+          menuData.id ? `${oldOb.oldName}修改失败` : `${oldOb.oldName}新增失败`,
+        )
+        break
     }
   }
 }
@@ -190,13 +250,13 @@ const removeMenu = async (menu: MenuData) => {
     case 200:
       ElMessage.success(`${menu.name}已成功删除`)
       getMenuList()
-      break;
+      break
     case 201:
       ElMessage.warning(`${menu.name}是${res.data}`)
-      break;
+      break
     default:
       ElMessage.warning(`${menu.name}删除失败`)
-      break;
+      break
   }
 }
 

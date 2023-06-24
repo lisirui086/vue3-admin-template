@@ -28,9 +28,9 @@ export interface MenuResponseData extends responseData {
 
 // 添加|修改菜单携带的参数ts类型
 export interface MenuParams {
-    code: string
-    id?: number
-    level: number
-    name: string
-    pid: number
+  code: string
+  id?: number
+  level: number
+  name: string
+  pid: number
 }

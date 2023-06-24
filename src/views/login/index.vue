@@ -4,36 +4,17 @@
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
         <!-- 登录表单 -->
-        <el-form
-          class="login_form"
-          :model="loginForm"
-          :rules="loginRules"
-          ref="ruleFormRef"
-        >
+        <el-form class="login_form" :model="loginForm" :rules="loginRules" ref="ruleFormRef">
           <h1>Hello</h1>
           <h2>欢迎来到劲桦运营管理平台</h2>
           <el-form-item prop="username">
-            <el-input
-              :prefix-icon="User"
-              v-model="loginForm.username"
-            ></el-input>
+            <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              type="password"
-              :prefix-icon="Lock"
-              v-model="loginForm.password"
-              show-password
-            ></el-input>
+            <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
           </el-form-item>
           <el-from-item>
-            <el-button
-              class="login_btn"
-              type="primary"
-              size="default"
-              :loading="loading"
-              @click="login(ruleFormRef)"
-            >
+            <el-button class="login_btn" type="primary" size="default" :loading="loading" @click="login(ruleFormRef)">
               登录
             </el-button>
           </el-from-item>
@@ -117,7 +98,7 @@ const login = async (formEl: FormInstance | undefined) => {
   loading.value = true
   try {
     await userStore.userLogin(loginForm)
-    $router.push({ path: redirect || '/' })
+    $router.push({ path: '/' || (redirect as string) })
     ElNotification({
       type: 'success',
       title: hoursMsg,

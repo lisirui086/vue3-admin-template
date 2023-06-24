@@ -7,13 +7,19 @@ import { defineStore } from 'pinia'
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user/index'
 
 // 引入路由常量
-import { routes } from '@/router/routes'
+import { routes, asnycRoute, anyRoute } from '@/router/routes'
 
 // 引入本地存储方法
 import { SET_TOKEN, REMOVE_TOKEN, GET_TOKEN } from '@/utils/token'
 
 // 引入ts类型
 import type { UserState } from './types/type'
+
+// 忽略ts对lodash的校验
+//@ts-ignore
+// 引入lodash
+import cloneDeep from 'lodash/cloneDeep'
+
 // 引入接口数据类型
 import type {
   loginFormData,
@@ -21,6 +27,19 @@ import type {
   userInfoResponseData,
   logoutResponseData,
 } from '@/api/user/type'
+import router from '@/router'
+
+// 用于过滤当前用户需要展示的异步路由
+function filterAsyncRoute(asnycRoute: any, routes: any) {
+  return asnycRoute.filter((item: any) => {
+    if (routes.includes(item.name)) {
+      if (item.children && item.children.length > 0) {
+        item.children =  filterAsyncRoute(item.children, routes)
+      }
+      return true
+    }
+  })
+}
 
 export const useUserStore = defineStore('User', {
   state: (): UserState => {
@@ -31,6 +50,7 @@ export const useUserStore = defineStore('User', {
       // 存储用户信息
       avatar: '',
       username: '',
+      buttons: []
     }
   },
   actions: {
@@ -54,6 +74,17 @@ export const useUserStore = defineStore('User', {
       if (res.code === 200) {
         this.avatar = res.data.avatar
         this.username = res.data.name
+        this.buttons = res.data.buttons
+        // 过滤异步路由
+        let userAsyncRoute = filterAsyncRoute(cloneDeep(asnycRoute), res.data.routes)
+        // 合并异步、任意路由数组
+        let asyncAndAnyRouteArr = [...userAsyncRoute, ...anyRoute]
+        // 路由目录
+        this.menuRoutes = [...routes, ...asyncAndAnyRouteArr]
+        // 注册异步、任意路由
+        asyncAndAnyRouteArr.forEach((route: any) => {
+          router.addRoute(route)
+        })
         return 'userInfo success'
       } else {
         return Promise.reject(new Error(res.message))

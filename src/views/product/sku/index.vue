@@ -229,7 +229,7 @@ const updateSkuSale = async (sku: SkuAllData, index: number) => {
     if (res.code == 200) {
       ElMessage.success(`序号:${index}:下架成功`)
     } else {
-      ElMessage.error(`序号:${index}:下架成功`)
+      ElMessage.error(`序号:${index}:下架失败`)
     }
   } else {
     // 目前该商品处于 下架阶段，我们把它上架
@@ -237,7 +237,7 @@ const updateSkuSale = async (sku: SkuAllData, index: number) => {
     if (res.code == 200) {
       ElMessage.success(`序号:${index}:上架成功`)
     } else {
-      ElMessage.error(`序号:${index}:下架成功`)
+      ElMessage.error(`序号:${index}:下架失败`)
     }
   }
   // 获取最新sku列表
@@ -252,7 +252,6 @@ const seeSkuInfo = async (sku: SkuAllData) => {
   let res: SkuInfoResponseData = await reqSkuInfo(sku.id)
   if (res.code == 200) {
     skuInfoData.value = res.data
-    console.dir(skuInfoData)
   }
 }
 

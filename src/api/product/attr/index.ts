@@ -4,7 +4,7 @@
 import requset from '@/utils/request'
 
 // 引入属性管理相关的ts类型
-import type { CategoryResponseData, AttrResponseData, AttrList } from './type'
+import type { CategoryResponseData, AttrResponseData, Attr } from './type'
 
 // api集合
 enum API {
@@ -34,7 +34,7 @@ export const reqAttr = (
     API.ATTR_URL + `${category1Id}/${category2Id}/${category3Id}`,
   )
 // 添加/修改属性
-export const reqAddOrEditAttr = (data: AttrList) =>
+export const reqAddOrEditAttr = (data: Attr) =>
   requset.post<any, any>(API.ADDOREDITATTR_URL, data)
 // 删除属性
 export const reqRemoveAttr = (attrId: number) =>

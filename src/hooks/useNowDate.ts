@@ -7,16 +7,16 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as dayjs from 'dayjs'
 
 export default function useNowDate() {
-  let nowTime = ref(dayjs().format('YYYY-DD-MM HH:mm:ss'))
+  let nowTime = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'))
 
   // 定时器
   let timer = null
-  
+
   // 组件挂载完毕后
   onMounted(() => {
     if (nowTime !== null || nowTime !== undefined) {
       timer = setInterval(() => {
-        nowTime.value = dayjs().format('YYYY-DD-MM HH:mm:ss')
+        nowTime.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
       }, 1000)
     }
   })

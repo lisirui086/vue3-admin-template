@@ -2,14 +2,30 @@
   <div class="tabbar_right">
     <el-button :icon="Refresh" circle @click="refresh = !refresh" />
     <el-button :icon="FullScreen" circle @click="fullScreen" />
-    <el-popover placement="bottom" title="主体设置" :width="240" trigger="click">
+    <el-popover
+      placement="bottom"
+      title="主体设置"
+      :width="240"
+      trigger="click"
+    >
       <el-form>
         <el-form-item label="主体颜色">
-          <el-color-picker size="small" v-model="color" show-alpha @change="setColor" />
+          <el-color-picker
+            size="small"
+            v-model="color"
+            show-alpha
+            @change="setColor"
+          />
         </el-form-item>
         <el-form-item label="夜间模式">
-          <el-switch @change="toggleDark" size="small" v-model="isDark" inline-prompt inactive-icon="Sunny"
-            active-icon="Moon" />
+          <el-switch
+            @change="toggleDark"
+            size="small"
+            v-model="isDark"
+            inline-prompt
+            inactive-icon="Sunny"
+            active-icon="Moon"
+          />
         </el-form-item>
       </el-form>
       <template #reference>
@@ -17,7 +33,11 @@
       </template>
     </el-popover>
 
-    <img :src="avatar" style="width: 30px; height: 30px; margin: 0 10px; border-radius: 50%" alt="" />
+    <img
+      :src="avatar"
+      style="width: 30px; height: 30px; margin: 0 10px; border-radius: 50%"
+      alt=""
+    />
 
     <el-dropdown style="cursor: pointer">
       <span class="el-dropdown-link">
@@ -93,14 +113,14 @@ const setColor = () => {
     `--el-color-success`,
     `--el-color-info`,
     `--el-color-danger`,
-    `--el-color-warning`
+    `--el-color-warning`,
   ]
 
-  for (let i = 0; i < btnTypeArr.length; i++){
+  for (let i = 0; i < btnTypeArr.length; i++) {
     getComputedStyle(el).getPropertyValue(btnTypeArr[i])
   }
 
-  for (let k = 0; k< btnTypeArr.length; k++){
+  for (let k = 0; k < btnTypeArr.length; k++) {
     el.style.setProperty(btnTypeArr[k], color.value)
   }
 

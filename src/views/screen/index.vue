@@ -2,13 +2,25 @@
   <div class="container">
     <!-- 数据大屏展示区域，画布 -->
     <div class="screen" ref="sceneDom">
+      <!-- 数据大屏顶部 -->
       <div class="top">
         <Top></Top>
       </div>
       <div class="bottom">
-        <div class="left">左侧</div>
-        <div class="center">中间</div>
-        <div class="right">右侧</div>
+        <div class="left">
+          <Tourist class="tourist"></Tourist>
+          <Sex class="sex"></Sex>
+          <Age class="age"></Age>
+        </div>
+        <div class="center">
+          <Map class="map"></Map>
+          <Line class="line"></Line>
+        </div>
+        <div class="right">
+          <Rank class="rank"></Rank>
+          <Year class="year"></Year>
+          <Couter class="couter"></Couter>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +32,15 @@ import { ref, onMounted } from 'vue'
 
 // 引入子组件
 import Top from './components/top/index.vue'
+import Tourist from './components/tourist/index.vue'
+import Sex from './components/sex/index.vue'
+import Age from './components/age/index.vue'
+import Map from './components/map/index.vue'
+import Line from './components/line/index.vue'
+import Rank from './components/rank/index.vue'
+import Year from './components/year/index.vue'
+import Couter from './components/couter/index.vue'
+
 
 // 画布节点
 let sceneDom = ref()
@@ -41,7 +62,6 @@ onMounted(() => {
 window.onresize = () => {
   sceneDom.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
 }
-
 </script>
 <script lang="ts">
 export default {
@@ -55,6 +75,13 @@ export default {
   height: 100vh;
   background: url(./images/bg.png) no-repeat;
   background-size: cover;
+
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   .screen {
     position: fixed;
@@ -75,13 +102,54 @@ export default {
 
       .left {
         flex: 1;
+        display: flex;
+        height: 1040px;
+        flex-direction: column;
+
+        .tourist {
+          flex: 1.5;
+        }
+
+        .age {
+          flex: 1;
+        }
+
+        .sex {
+          flex: 1;
+        }
       }
+
       .center {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+
+        .map {
+          flex: 3;
+        }
+
+        .line {
+          flex: 1;
+        }
       }
 
       .right {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+
+        .rank {
+          flex: 1.5;
+        }
+
+        .year {
+          flex: 1;
+        }
+
+        .couter {
+          flex: 1;
+        }
       }
     }
   }

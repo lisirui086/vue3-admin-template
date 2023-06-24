@@ -16,6 +16,7 @@ const Sku = () => import('@/views/product/sku/index.vue')
 const Spu = () => import('@/views/product/spu/index.vue')
 const Trademark = () => import('@/views/product/trademark/index.vue')
 
+// 常量路由：任何用户皆可访问
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -58,11 +59,15 @@ export const routes: Array<RouteRecordRaw> = [
       icon: 'Histogram',
     },
   },
+]
+
+// 异步路由
+export const asnycRoute = [
   {
     path: '/acl',
     redirect: '/acl/permission',
     component: Layout,
-    name: 'acl',
+    name: 'Acl',
     meta: {
       title: '权限管理',
       hidden: false,
@@ -72,7 +77,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/acl/permission',
         component: Permission,
-        name: 'permission',
+        name: 'Permission',
         meta: {
           title: '菜单管理',
           hidden: false,
@@ -82,7 +87,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/acl/role',
         component: Role,
-        name: 'role',
+        name: 'Role',
         meta: {
           title: '角色管理',
           hidden: false,
@@ -92,7 +97,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/acl/user',
         component: User,
-        name: 'user',
+        name: 'User',
         meta: {
           title: '用户管理',
           hidden: false,
@@ -105,7 +110,7 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/product',
     redirect: '/product/sku',
     component: Layout,
-    name: 'product',
+    name: 'Product',
     meta: {
       title: '商品管理',
       hidden: false,
@@ -115,7 +120,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/product/sku',
         component: Sku,
-        name: 'sku',
+        name: 'Sku',
         meta: {
           title: 'sku管理',
           hidden: false,
@@ -125,7 +130,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/product/attr',
         component: Attr,
-        name: 'attr',
+        name: 'Attr',
         meta: {
           title: '属性管理',
           hidden: false,
@@ -136,7 +141,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/product/spu',
         component: Spu,
-        name: 'spu',
+        name: 'Spu',
         meta: {
           title: 'spu管理',
           hidden: false,
@@ -146,7 +151,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/product/trademark',
         component: Trademark,
-        name: 'trademark',
+        name: 'Trademark',
         meta: {
           title: '品牌管理',
           hidden: false,
@@ -155,10 +160,14 @@ export const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+]
+
+// 任意路由
+export const anyRoute = [
   {
     path: '/404',
     component: NotFound,
-    name: 'notFound',
+    name: 'NotFound',
     meta: {
       title: '页面不存在',
       hidden: true,
@@ -168,7 +177,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',
-    name: 'any',
+    name: 'Any',
     meta: {
       title: '页面不存在',
       hidden: true,

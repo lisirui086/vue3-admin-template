@@ -29,7 +29,7 @@ export type AttrValue = attrValueList[]
 // 属性值对象的数据类型
 export interface Attr {
   id?: number
-  attrName: string
+  attrName?: string
   categoryId: number | string
   categoryLevel: number
   attrIdAndValueId?: string

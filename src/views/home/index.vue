@@ -7,6 +7,7 @@
         <h3 class="title">{{ hoursMsg }}呀！{{ userStore.username }}</h3>
         <span class="welcome">欢迎使用{{ setting.projectName }}</span>
       </div>
+      <span class="time">当前时间:{{ timeText }}</span>
     </div>
   </el-card>
   <!-- SVG图片 -->
@@ -22,6 +23,7 @@ import { useUserStore } from '@/store/modules/user'
 
 // 引入时间段函数
 import useHours from '@/hooks/useHours'
+import useNowDate from '@/hooks/useNowDate'
 
 // 引入项目名称
 import setting from '@/setting'
@@ -31,6 +33,7 @@ let userStore = useUserStore()
 
 // 获取当前时间段文字
 let hoursMsg = useHours()
+let timeText = useNowDate()
 </script>
 
 <script lang="ts">
@@ -47,7 +50,7 @@ export default {
     margin-left: 50px;
     line-height: 50px;
 
-    .title{
+    .title {
       font-size: 30px;
       font-weight: 500;
     }
@@ -56,6 +59,11 @@ export default {
       font-style: italic;
       color: rgb(35, 152, 199);
     }
+  }
+
+  .time {
+    position: relative;
+    right: 1000;
   }
 }
 .svgSolt {

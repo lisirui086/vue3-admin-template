@@ -1,13 +1,20 @@
 <template>
   <div class="logo" v-if="setting.hidden">
     <img :src="setting.logo" />
-    <p>{{ setting.projectName }}</p>
+    <p v-if="!settingStore.fold">{{ setting.projectName }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 // 引入setting.ts
 import setting from '@/setting.ts'
+
+// 引入setting仓库
+import { useSettingStore } from '@/store/modules/setting'
+
+let settingStore = useSettingStore()
+
 </script>
 <script lang="ts">
 export default {

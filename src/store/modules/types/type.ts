@@ -9,7 +9,8 @@ export interface UserState {
   token: string | null
   menuRoutes: RouteRecordRaw[]
   avatar: string
-  username: string
+  username: string,
+  buttons: string[]
 }
 
 // 定义 category 小仓库state类型
