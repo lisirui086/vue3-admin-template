@@ -41,7 +41,6 @@ import Rank from './components/rank/index.vue'
 import Year from './components/year/index.vue'
 import Couter from './components/couter/index.vue'
 
-
 // 画布节点
 let sceneDom = ref()
 
@@ -53,15 +52,20 @@ function getScale(w = 1920, h = 1080) {
   return ww < hh ? ww : hh
 }
 
+// 计算视口宽高
+let handlerSize = () => {
+  if (sceneDom.value) {
+    sceneDom.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
+  }
+}
+
 // 组件挂载完毕后
 onMounted(() => {
-  sceneDom.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
+  handlerSize()
 })
 
 // 侦听视口变化
-window.onresize = () => {
-  sceneDom.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
-}
+window.addEventListener('resize', handlerSize)
 </script>
 <script lang="ts">
 export default {

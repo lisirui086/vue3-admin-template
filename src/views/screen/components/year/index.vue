@@ -2,7 +2,7 @@
   <div class="box7">
     <div class="title">
       <p>年度游客量对比</p>
-      <img src="../../images/dataScreen-title.png" alt="">
+      <img src="../../images/dataScreen-title.png" alt="" />
     </div>
     <div class="charts" ref="charts"></div>
   </div>
@@ -30,21 +30,21 @@ onMounted(() => {
       text: '散点图',
       left: '40%',
       textStyle: {
-        color: 'white'
-      }
+        color: 'white',
+      },
     },
     xAxis: {
       type: 'category',
-      show: true
+      show: true,
     },
     yAxis: {
-      show: false
+      show: false,
     },
     grid: {
       left: 20,
       right: 20,
       top: 0,
-      bottom: 20
+      bottom: 20,
     },
     series: {
       type: 'scatter',
@@ -54,21 +54,20 @@ onMounted(() => {
       label: {
         show: true,
         position: 'top',
-        color: 'white'
-      }
-    }
+        color: 'white',
+      },
+    },
   }
 
   myCharts.setOption(option)
 })
 </script>
 
-<style scoped lang='scss'>
-
+<style scoped lang="scss">
 .box7 {
   width: 100%;
   height: 100%;
-  background: url(../../images/dataScreen-main-cb.png)no-repeat;
+  background: url(../../images/dataScreen-main-cb.png) no-repeat;
   background-size: 100% 100%;
   margin: 20px 0;
 
@@ -83,6 +82,4 @@ onMounted(() => {
     height: calc(100% - 40px);
   }
 }
-
-
 </style>

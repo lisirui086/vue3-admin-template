@@ -1,24 +1,74 @@
 <template>
-  <SelectKey label="职位搜索" placeholder="请输入职位" v-model:modelValue="keyword" @handler-select="searchKeyword"></SelectKey>
+  <SelectKey
+    label="职位搜索"
+    placeholder="请输入职位"
+    v-model:modelValue="keyword"
+    @handler-select="searchKeyword"
+  ></SelectKey>
   <!-- 表格 -->
   <el-card style="margin: 10px 0">
     <el-button type="primary" icon="Plus" @click="addRole">新增职位</el-button>
     <el-table border style="margin: 10px 0" :data="roleList" height="310">
-      <el-table-column type="index" label="序号" align="center" width="60"></el-table-column>
-      <el-table-column label="ID" align="center" width="80" prop="id"></el-table-column>
-      <el-table-column label="职位名称" align="center" width="150" prop="roleName" show-overflow-tooltip></el-table-column>
-      <el-table-column label="创建时间" align="center" width="170" prop="createTime" show-overflow-tooltip></el-table-column>
-      <el-table-column label="更新时间" align="center" width="170" prop="updateTime" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        type="index"
+        label="序号"
+        align="center"
+        width="60"
+      ></el-table-column>
+      <el-table-column
+        label="ID"
+        align="center"
+        width="80"
+        prop="id"
+      ></el-table-column>
+      <el-table-column
+        label="职位名称"
+        align="center"
+        width="150"
+        prop="roleName"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="创建时间"
+        align="center"
+        width="170"
+        prop="createTime"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="更新时间"
+        align="center"
+        width="170"
+        prop="updateTime"
+        show-overflow-tooltip
+      ></el-table-column>
       <el-table-column label="操作" align="center">
         <template #="{ row, $index }">
-          <el-button type="primary" icon="SetUp" size="small" @click="setPower(row)">
+          <el-button
+            type="primary"
+            icon="SetUp"
+            size="small"
+            @click="setPower(row)"
+          >
             分配权限
           </el-button>
-          <el-button type="info" icon="EditPen" size="small" @click="editRole(row)">
+          <el-button
+            type="info"
+            icon="EditPen"
+            size="small"
+            @click="editRole(row)"
+          >
             编辑
           </el-button>
-          <el-popconfirm width="220" confirm-button-text="删除" cancel-button-text="取消" icon="InfoFilled"
-            icon-color="red" :title="`确定要删除${row.roleName}吗？`" @confirm="removeRole(row)">
+          <el-popconfirm
+            width="220"
+            confirm-button-text="删除"
+            cancel-button-text="取消"
+            icon="InfoFilled"
+            icon-color="red"
+            :title="`确定要删除${row.roleName}吗？`"
+            @confirm="removeRole(row)"
+          >
             <template #reference>
               <el-button type="danger" icon="Delete" size="small">
                 删除
@@ -29,15 +79,29 @@
       </el-table-column>
     </el-table>
     <!-- 分页器 -->
-    <el-pagination v-model:current-page="pageData.page" v-model:page-size="pageData.limit" :page-sizes="[5, 10, 15]"
-      background="background" layout="prev, pager, next, jumper, -> , sizes, total" :total="pageData.total"
-      @current-change="getRoleList" @size-change="handlerLimit" />
+    <el-pagination
+      v-model:current-page="pageData.page"
+      v-model:page-size="pageData.limit"
+      :page-sizes="[5, 10, 15]"
+      background="background"
+      layout="prev, pager, next, jumper, -> , sizes, total"
+      :total="pageData.total"
+      @current-change="getRoleList"
+      @size-change="handlerLimit"
+    />
   </el-card>
   <!-- 添加|修改角色的对话框 -->
-  <el-dialog v-model="dialogVisible" :title="newRole.id ? '修改职位' : '新增职位'" width="30%">
+  <el-dialog
+    v-model="dialogVisible"
+    :title="newRole.id ? '修改职位' : '新增职位'"
+    width="30%"
+  >
     <el-form :rules="rules" ref="ruleFormRef" :model="newRole">
       <el-form-item label="职位名称" prop="roleName">
-        <el-input v-model.trim.lazy="newRole.roleName" placeholder="请输入职位" />
+        <el-input
+          v-model.trim.lazy="newRole.roleName"
+          placeholder="请输入职位"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -52,11 +116,18 @@
   <!-- 分配权限的抽屉组件 -->
   <el-drawer v-model="drawer">
     <template #header>
-      <h4>对{{newRole.roleName}}分配权限</h4>
+      <h4>对{{ newRole.roleName }}分配权限</h4>
     </template>
     <template #default>
-      <el-tree ref="treeEL" :data="permisstionList" show-checkbox node-key="id" default-expand-all
-        :default-checked-keys="selectArrr" :props="TreeProps" />
+      <el-tree
+        ref="treeEL"
+        :data="permisstionList"
+        show-checkbox
+        node-key="id"
+        default-expand-all
+        :default-checked-keys="selectArrr"
+        :props="TreeProps"
+      />
     </template>
     <template #footer>
       <div style="flex: auto">

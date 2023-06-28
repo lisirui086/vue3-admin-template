@@ -1,4 +1,4 @@
-function useHours(): string {
+const useHours = (): string => {
   let hoursMsg: string = '你好'
 
   let date = new Date()

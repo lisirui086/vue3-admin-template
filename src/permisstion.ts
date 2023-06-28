@@ -44,7 +44,7 @@ router.beforeEach(async (to, from, next) => {
           // 发请求获取用户信息
           await userStore.userInfo()
           // 避免死循环
-          next({...to,replace:true})
+          next({ ...to, replace: true })
         } catch (error) {
           ElMessage.error('token失效,请重新登录')
           await userStore.logout()

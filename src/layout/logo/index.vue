@@ -14,7 +14,6 @@ import setting from '@/setting.ts'
 import { useSettingStore } from '@/store/modules/setting'
 
 let settingStore = useSettingStore()
-
 </script>
 <script lang="ts">
 export default {

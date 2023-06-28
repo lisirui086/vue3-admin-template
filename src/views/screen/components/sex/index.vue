@@ -2,14 +2,14 @@
   <div class="box">
     <div class="title">
       <p>男女比例</p>
-      <img src="../../images/dataScreen-title.png" alt="">
+      <img src="../../images/dataScreen-title.png" alt="" />
     </div>
     <div class="sex">
       <div class="man">
-        <img src="../../images/man.png" alt="">
+        <img src="../../images/man.png" alt="" />
       </div>
       <div class="women">
-        <img src="../../images/woman.png" alt="">
+        <img src="../../images/woman.png" alt="" />
       </div>
     </div>
     <div class="rate">
@@ -41,17 +41,17 @@ onMounted(() => {
       text: '男女比例',
       left: '40%',
       textStyle: {
-        color: '#29fcff'
-      }
+        color: '#29fcff',
+      },
     },
     xAxis: {
       show: false,
       min: 0,
-      max: 100
+      max: 100,
     },
     yAxis: {
       show: false,
-      type: 'category'
+      type: 'category',
     },
     series: [
       {
@@ -61,8 +61,8 @@ onMounted(() => {
         z: 200,
         itemStyle: {
           borderRadius: 20,
-          color: '#007afe'
-        }
+          color: '#007afe',
+        },
       },
       {
         type: 'bar',
@@ -71,21 +71,21 @@ onMounted(() => {
         barGap: '-100%',
         itemStyle: {
           color: '#ff4b7a',
-          borderRadius: 20
-        }
-      }
+          borderRadius: 20,
+        },
+      },
     ],
     grid: {
       left: 20,
       right: 20,
       bottom: 0,
-      top: 0
-    }
+      top: 0,
+    },
   })
 })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .box {
   width: 100%;
   height: 100%;

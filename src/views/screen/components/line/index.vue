@@ -2,7 +2,7 @@
   <div class="box5">
     <div class="title">
       <p>未来七天游客趋势图</p>
-      <img src="../../images/dataScreen-title.png" alt="">
+      <img src="../../images/dataScreen-title.png" alt="" />
     </div>
     <div class="charts" ref="charts"></div>
   </div>
@@ -31,39 +31,39 @@ onMounted(() => {
       textAlign: 'left',
       textVerticalAlign: 'middle',
       textStyle: {
-        color: '#fff'
+        color: '#fff',
       },
       left: 400,
       right: 0,
-      bottom: 10
+      bottom: 10,
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
       splitLine: {
-        show: false
+        show: false,
       },
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日',],
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
       axisTick: {
-        show: true
-      }
+        show: true,
+      },
     },
     yAxis: {
       splitLine: {
-        show: false
+        show: false,
       },
       axisLine: {
-        show: true
+        show: true,
       },
       axisTick: {
-        show: true
-      }
+        show: true,
+      },
     },
     grid: {
       left: 40,
       right: 20,
       top: 0,
-      bottom: 75
+      bottom: 75,
     },
     // 系列
     series: [
@@ -77,26 +77,29 @@ onMounted(() => {
           y: 0,
           x2: 0,
           y2: 1,
-          colorStops: [{
-            offset: 0, color: 'red' // 0% 处的颜色
-          }, {
-            offset: 1, color: 'blue' // 100% 处的颜色
-          }],
-          global: false // 缺省为 false
-        }
-      }
-    ]
+          colorStops: [
+            {
+              offset: 0,
+              color: 'red', // 0% 处的颜色
+            },
+            {
+              offset: 1,
+              color: 'blue', // 100% 处的颜色
+            },
+          ],
+          global: false, // 缺省为 false
+        },
+      },
+    ],
   })
 })
-
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .box5 {
   width: 100%;
   height: 100%;
-  background: url(../../images/dataScreen-main-cb.png)no-repeat;
+  background: url(../../images/dataScreen-main-cb.png) no-repeat;
   background-size: 100% 100%;
   margin-left: 20px;
 

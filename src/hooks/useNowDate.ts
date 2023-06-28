@@ -4,9 +4,9 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 // 时间库
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs/esm/index.js'
 
-export default function useNowDate() {
+const useNowDate = () => {
   let nowTime = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'))
 
   // 定时器
@@ -28,3 +28,5 @@ export default function useNowDate() {
   })
   return nowTime
 }
+
+export default useNowDate

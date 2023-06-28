@@ -2,7 +2,9 @@
   <div class="top">
     <div class="left">
       <span class="lbtn">
-        <router-link to="/" style="color: #29fcff; text-decoration:none;">首页</router-link>
+        <router-link to="/" style="color: #29fcff; text-decoration: none">
+          首页
+        </router-link>
       </span>
     </div>
     <div class="center">

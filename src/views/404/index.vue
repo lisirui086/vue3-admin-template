@@ -1,7 +1,12 @@
 <template>
   <div class="box9">
-    <img src="@/assets/images/error_images/404.png" alt="抱歉，这个页面已经被外星人绑架了">
-    <span>抱歉，这个页面已经被外星人绑架了，页面将在{{ num }}秒后跳转至首页</span>
+    <img
+      src="@/assets/images/error_images/404.png"
+      alt="抱歉，这个页面已经被外星人绑架了"
+    />
+    <span>
+      抱歉，这个页面已经被外星人绑架了，页面将在{{ num }}秒后跳转至首页
+    </span>
   </div>
 </template>
 
@@ -34,7 +39,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(timer)
 })
-
 </script>
 <script lang="ts">
 export default {

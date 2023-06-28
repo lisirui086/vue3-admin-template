@@ -2,7 +2,7 @@
   <div class="box8">
     <div class="title">
       <p>数据分析</p>
-      <img src="../../images/dataScreen-title.png" alt="">
+      <img src="../../images/dataScreen-title.png" alt="" />
     </div>
     <div class="charts" ref="charts"></div>
   </div>
@@ -24,8 +24,8 @@ onMounted(() => {
   let myCharts = echarts.init(charts.value)
 
   // 配置项
-  let option = {  
-    color: ["#00c2ff", "#f9cf67", "#e92b77"],
+  let option = {
+    color: ['#00c2ff', '#f9cf67', '#e92b77'],
     legend: {
       show: true,
       // icon: 'circle',//图例形状
@@ -36,52 +36,52 @@ onMounted(() => {
       itemGap: 21, // 图例每项之间的间隔。[ default: 10 ]横向布局时为水平间隔，纵向布局时为纵向间隔。
       textStyle: {
         fontSize: 14,
-        color: "#ade3ff",
+        color: '#ade3ff',
       },
-      data: ["2016", "2017", "2018"],
+      data: ['2016', '2017', '2018'],
     },
     radar: [
       {
         indicator: [
           {
-            text: "科技创新联盟",
+            text: '科技创新联盟',
             max: 100,
           },
           {
-            text: "科技成果转化中心",
+            text: '科技成果转化中心',
             max: 100,
           },
           {
-            text: "工程技术中心（工程实验室）",
+            text: '工程技术中心（工程实验室）',
             max: 100,
           },
           {
-            text: "新型研发机构",
+            text: '新型研发机构',
             max: 100,
           },
           {
-            text: "科技创孵化器",
+            text: '科技创孵化器',
             max: 100,
           },
         ],
 
         textStyle: {
-          color: "red",
+          color: 'red',
         },
-        center: ["50%", "50%"],
+        center: ['50%', '50%'],
         radius: 142,
         startAngle: 90,
         splitNumber: 3,
-        orient: "horizontal", // 图例列表的布局朝向,默认'horizontal'为横向,'vertical'为纵向.
+        orient: 'horizontal', // 图例列表的布局朝向,默认'horizontal'为横向,'vertical'为纵向.
         // shape: 'circle',
         // backgroundColor: {
         //     image:imgPath[0]
         // },
         name: {
-          formatter: "{value}",
+          formatter: '{value}',
           textStyle: {
             fontSize: 14, //外圈标签字体大小
-            color: "#5b81cb", //外圈标签字体颜色
+            color: '#5b81cb', //外圈标签字体颜色
           },
         },
         splitArea: {
@@ -89,7 +89,7 @@ onMounted(() => {
           show: true,
           areaStyle: {
             // 分隔区域的样式设置。
-            color: ["#141c42", "#141c42"], // 分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。
+            color: ['#141c42', '#141c42'], // 分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。
           },
         },
         // axisLabel:{//展示刻度
@@ -98,12 +98,12 @@ onMounted(() => {
         axisLine: {
           //指向外圈文本的分隔线样式
           lineStyle: {
-            color: "#153269",
+            color: '#153269',
           },
         },
         splitLine: {
           lineStyle: {
-            color: "#113865", // 分隔线颜色
+            color: '#113865', // 分隔线颜色
             width: 1, // 分隔线线宽
           },
         },
@@ -111,8 +111,8 @@ onMounted(() => {
     ],
     series: [
       {
-        name: "雷达图",
-        type: "radar",
+        name: '雷达图',
+        type: 'radar',
         itemStyle: {
           emphasis: {
             lineStyle: {
@@ -122,13 +122,13 @@ onMounted(() => {
         },
         data: [
           {
-            name: "2016",
+            name: '2016',
             value: [85, 65, 55, 90, 82],
             areaStyle: {
               normal: {
                 // 单项区域填充样式
                 color: {
-                  type: "linear",
+                  type: 'linear',
                   x: 0, //右
                   y: 0, //下
                   x2: 1, //左
@@ -136,15 +136,15 @@ onMounted(() => {
                   colorStops: [
                     {
                       offset: 0,
-                      color: "#00c2ff",
+                      color: '#00c2ff',
                     },
                     {
                       offset: 0.5,
-                      color: "rgba(0,0,0,0)",
+                      color: 'rgba(0,0,0,0)',
                     },
                     {
                       offset: 1,
-                      color: "#00c2ff",
+                      color: '#00c2ff',
                     },
                   ],
                   globalCoord: false,
@@ -157,19 +157,19 @@ onMounted(() => {
               // 单个拐点文本的样式设置
               normal: {
                 show: true, // 单个拐点文本的样式设置。[ default: false ]
-                position: "top", // 标签的位置。[ default: top ]
+                position: 'top', // 标签的位置。[ default: top ]
                 distance: 2, // 距离图形元素的距离。当 position 为字符描述值（如 'top'、'insideRight'）时候有效。[ default: 5 ]
-                color: "#6692e2", // 文字的颜色。如果设置为 'auto'，则为视觉映射得到的颜色，如系列色。[ default: "#fff" ]
+                color: '#6692e2', // 文字的颜色。如果设置为 'auto'，则为视觉映射得到的颜色，如系列色。[ default: "#fff" ]
                 fontSize: 14, // 文字的字体大小
                 formatter: function (params) {
-                  return params.value;
+                  return params.value
                 },
               },
             },
             itemStyle: {
               normal: {
                 //图形悬浮效果
-                borderColor: "#00c2ff",
+                borderColor: '#00c2ff',
                 borderWidth: 2.5,
               },
             },
@@ -180,12 +180,12 @@ onMounted(() => {
             // }
           },
           {
-            name: "2017",
+            name: '2017',
             value: [50, 20, 45, 30, 75],
             symbolSize: 2.5,
             itemStyle: {
               normal: {
-                borderColor: "#f9cf67",
+                borderColor: '#f9cf67',
                 borderWidth: 2.5,
               },
             },
@@ -193,7 +193,7 @@ onMounted(() => {
               normal: {
                 // 单项区域填充样式
                 color: {
-                  type: "linear",
+                  type: 'linear',
                   x: 0, //右
                   y: 0, //下
                   x2: 1, //左
@@ -201,15 +201,15 @@ onMounted(() => {
                   colorStops: [
                     {
                       offset: 0,
-                      color: "#f9cf67",
+                      color: '#f9cf67',
                     },
                     {
                       offset: 0.5,
-                      color: "rgba(0,0,0,0)",
+                      color: 'rgba(0,0,0,0)',
                     },
                     {
                       offset: 1,
-                      color: "#f9cf67",
+                      color: '#f9cf67',
                     },
                   ],
                   globalCoord: false,
@@ -224,12 +224,12 @@ onMounted(() => {
             // }
           },
           {
-            name: "2018",
+            name: '2018',
             value: [37, 80, 12, 50, 25],
             symbolSize: 2.5,
             itemStyle: {
               normal: {
-                borderColor: "#e92b77",
+                borderColor: '#e92b77',
                 borderWidth: 2.5,
               },
             },
@@ -237,7 +237,7 @@ onMounted(() => {
               normal: {
                 // 单项区域填充样式
                 color: {
-                  type: "linear",
+                  type: 'linear',
                   x: 0, //右
                   y: 0, //下
                   x2: 1, //左
@@ -245,15 +245,15 @@ onMounted(() => {
                   colorStops: [
                     {
                       offset: 0,
-                      color: "#e92b77",
+                      color: '#e92b77',
                     },
                     {
                       offset: 0.5,
-                      color: "rgba(0,0,0,0)",
+                      color: 'rgba(0,0,0,0)',
                     },
                     {
                       offset: 1,
-                      color: "#e92b77",
+                      color: '#e92b77',
                     },
                   ],
                   globalCoord: false,
@@ -265,13 +265,13 @@ onMounted(() => {
         ],
       },
     ],
-  };
+  }
 
   myCharts.setOption(option)
 })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .box8 {
   width: 100%;
   height: 100%;

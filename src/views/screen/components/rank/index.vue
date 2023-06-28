@@ -2,7 +2,7 @@
   <div class="box6">
     <div class="title">
       <p>年龄比例</p>
-      <img src="../../images/dataScreen-title.png" alt="">
+      <img src="../../images/dataScreen-title.png" alt="" />
     </div>
     <div class="info">
       <span>排名</span>
@@ -46,7 +46,7 @@ onMounted(() => {
   let option = {
     // backgroundColor: '#0e2147',
     xAxis: {
-      show: false
+      show: false,
     },
     yAxis: [
       {
@@ -55,13 +55,13 @@ onMounted(() => {
         // 是否是反向坐标轴。
         inverse: true,
         axisLine: {
-          show: false
+          show: false,
         },
         splitLine: {
-          show: false
+          show: false,
         },
         axisTick: {
-          show: false
+          show: false,
         },
         axisLabel: {
           color: '#fff',
@@ -69,11 +69,9 @@ onMounted(() => {
           fontWeight: 'bolder',
           // 刻度标签的内容格式器，支持字符串模板和回调函数两种形式。
           formatter: function (value: string) {
-            return [
-              value
-            ]
-          }
-        }
+            return [value]
+          },
+        },
       },
       {
         show: true,
@@ -82,19 +80,19 @@ onMounted(() => {
         axisLabel: {
           textStyle: {
             fontSize: 18,
-            color: '#fff'
-          }
+            color: '#fff',
+          },
         },
         axisLine: {
-          show: false
+          show: false,
         },
         splitLine: {
-          show: false
+          show: false,
         },
         axisTick: {
-          show: false
-        }
-      }
+          show: false,
+        },
+      },
     ],
     series: [
       {
@@ -112,8 +110,8 @@ onMounted(() => {
             color: function (params: any) {
               let num = myColor.length
               return myColor[params.dataIndex % num]
-            }
-          }
+            },
+          },
         },
         label: {
           normal: {
@@ -121,9 +119,9 @@ onMounted(() => {
             position: 'inside',
             formatter: '{c}%',
             color: '#fff',
-            fontSize: 18
-          }
-        }
+            fontSize: 18,
+          },
+        },
       },
       {
         name: '框',
@@ -138,9 +136,9 @@ onMounted(() => {
             borderColor: '#00c1de',
             borderWidth: 3,
             barBorderRadius: 15,
-          }
-        }
-      }
+          },
+        },
+      },
     ],
     // 布局组件
     grid: {
@@ -148,15 +146,15 @@ onMounted(() => {
       right: 0,
       top: -5,
       bottom: 0,
-      containLabel: true
-    }
+      containLabel: true,
+    },
   }
 
   myCharts.setOption(option)
 })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .box6 {
   width: 100%;
   height: 100%;
@@ -187,17 +185,14 @@ onMounted(() => {
       color: orange;
       font-size: 20px;
       font-weight: 900;
-      font-family: "Gill Sans", sans-serif;
+      font-family: 'Gill Sans', sans-serif;
       flex: 1;
     }
 
-    span:nth-last-child(-n+2) {
+    span:nth-last-child(-n + 2) {
       margin-left: -100px;
     }
-
-    
   }
-  
 
   .main {
     display: flex;
@@ -219,23 +214,19 @@ onMounted(() => {
         background-size: 80px 80px;
         color: white;
         text-align: center;
-        display:block;
+        display: block;
       }
 
-      span:nth-child(-n+3){
+      span:nth-child(-n + 3) {
         color: red;
         font-weight: bold;
       }
     }
 
-
     .charts {
       flex: 3;
       height: calc(100% - 150px);
     }
-
   }
-
-
 }
 </style>

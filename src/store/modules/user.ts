@@ -34,7 +34,7 @@ function filterAsyncRoute(asnycRoute: any, routes: any) {
   return asnycRoute.filter((item: any) => {
     if (routes.includes(item.name)) {
       if (item.children && item.children.length > 0) {
-        item.children =  filterAsyncRoute(item.children, routes)
+        item.children = filterAsyncRoute(item.children, routes)
       }
       return true
     }
@@ -50,7 +50,7 @@ export const useUserStore = defineStore('User', {
       // 存储用户信息
       avatar: '',
       username: '',
-      buttons: []
+      buttons: [],
     }
   },
   actions: {
@@ -76,7 +76,10 @@ export const useUserStore = defineStore('User', {
         this.username = res.data.name
         this.buttons = res.data.buttons
         // 过滤异步路由
-        let userAsyncRoute = filterAsyncRoute(cloneDeep(asnycRoute), res.data.routes)
+        let userAsyncRoute = filterAsyncRoute(
+          cloneDeep(asnycRoute),
+          res.data.routes,
+        )
         // 合并异步、任意路由数组
         let asyncAndAnyRouteArr = [...userAsyncRoute, ...anyRoute]
         // 路由目录
